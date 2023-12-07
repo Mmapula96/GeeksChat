@@ -1,0 +1,148 @@
+body{
+    font-family: Arial, sans-serif;
+    
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+position:fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.auth-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #0a9751;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+.auth-link {
+    margin-top: 10px;
+}
+/* Your existing CSS styles */
+
+/* Styling for the images */
+.auth-image {
+    width: 500px;
+    height:300px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+/* Your existing CSS styles */
+
+/* Styling for the signup link */
+.auth-link a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.auth-link a:hover {
+    color: #0056b3;
+}
+/* Your existing CSS styles */
+
+/* Styling for input groups with icons */
+.input-group {
+    position: relative;
+    margin-bottom: 10px;
+  
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #ccc;
+}
+
+.input-group input {
+    padding-left: 40px;
+    width:300px;
+
+}
+
+.input-group input::before {
+    font-family: "Font Awesome 5 Free";
+    content: attr(data-icon);
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Rest of your CSS */
+/* Default styles for all screen sizes */
+body {
+    font-size: 16px;
+  }
+  
+  /* Styles for screens smaller than 600px (e.g., mobile phones) */
+  @media (max-width: 600px) {
+    body {
+      font-size: 14px;
+    }
+  }
+  
+  /* Styles for screens between 601px and 1024px (e.g., tablets) */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    body {
+      font-size: 18px;
+    }
+  }
+  
+  /* Styles for screens larger than 1024px (e.g., desktops) */
+  @media (min-width: 1025px) {
+    body {
+      font-size: 20px;
+    }
+  }
+  h2{text-align: center;}

@@ -1,0 +1,40 @@
+
+
+.search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 500px;
+    height: 400px;
+    background-color: cadetblue;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 50px; /* Adjust the width and height according to your design */
+    height: 40px;
+    border-radius: 50%; /* Creates a circular avatar */
+    margin-right: 10px; /* Add margin to separate the avatar from the text */
+    border: 2px solid #fff;
+
+  }
+  
+  .add-to-chat-btn {
+    margin-left: 10px;
+  }
+
+.search {
+    display: flex;
+    justify-content: space-between; /* Aligns items with space between them */
+    align-items: center; /* Vertically center items */
+    margin-bottom: 10px; /* Add margin for better spacing */
+  }
+  
+  .add-to-chat-btn {
+    margin-left: 10px; /* Add left margin to separate the button from the text */
+  }

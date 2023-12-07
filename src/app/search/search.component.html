@@ -1,0 +1,49 @@
+
+    <div id="container">
+      <aside>
+        <header>
+          <button (click)="logout()">Logout</button>
+          <input type="text" [(ngModel)]="searchName" placeholder="Enter name">
+         <button (click)="searchUsers()">Search</button>
+
+          <div *ngFor="let user of users">
+            
+               {{ user.name }}
+       
+            </div> 
+            <div *ngFor="let user of Searchuser">
+              {{ user.username }}
+            </div>
+                  </header>
+
+                 
+
+                  <app-chatlist (userSelected)="onUserSelected($event)"></app-chatlist>
+ 
+        </aside>
+      <main>
+        <div class="chat-container">
+  
+  <header *ngIf="selectedUser">
+    <div class="circle">{{ selectedUser.username.charAt(0).toUpperCase() }}</div>
+    <div>
+    Chat with {{ selectedUser.username }}
+    </div>
+  </header>
+
+</div>
+        <ul id="chat">
+          <li class="you">
+            <div class="entete">
+              
+            </div>
+          </li>
+        </ul>
+        <footer>
+          <textarea placeholder="Type your message"></textarea>
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png" alt="">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt="">
+          <a href="#">Send</a>
+        </footer>
+      </main>
+    

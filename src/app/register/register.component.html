@@ -1,0 +1,23 @@
+<!-- src/app/login/login.component.html -->
+<h2>Geeks Chat Register</h2>
+<div class="container">
+  <img src="assets/image.png" alt="Signup Image" class="auth-image">
+  <h1>Register</h1>
+  <form #registerForm="ngForm" (ngSubmit)="save()" novalidate>
+    <div class="input-group">
+      <input type="text" [(ngModel)]="username" name="username" class="form-control" id="username" placeholder="Enter username" required>
+    </div>
+    <div class="input-group">
+      <input type="text" [(ngModel)]="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+    </div>
+    <div class="input-group">
+      <input type="password" [(ngModel)]="password" name="password" class="form-control" id="password" placeholder="Enter password" required>
+    </div>
+    <!-- Add additional fields for registration, e.g., confirm password, etc. -->
+    <!-- <div class="input-group">
+      <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" class="form-control" id="confirmPassword" placeholder="Confirm password" required>
+    </div> -->
+    <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
+    <p class="auth-link">Already have an account? <a routerLink="/login">Login</a></p>
+  </form>
+</div>

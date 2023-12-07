@@ -1,0 +1,15 @@
+
+<div *ngFor="let user of Searchuser" class="user-circle" (click)="selectUser(user)">
+
+ 
+  <div class="circle">{{ user.username.charAt(0).toUpperCase() }}</div>
+  <div>{{ user.username }}</div>
+
+</div>
+
+
+
+
+
+
+

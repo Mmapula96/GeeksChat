@@ -42,11 +42,12 @@ aside input{
 	border:none;
 	border-radius:3px;
 	color:#fff;
-	background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_search.png);
 	background-repeat:no-repeat;
 	background-position:170px;
 	background-size:40px;
 }
+
+
 aside input::placeholder{
 	color:#fff;
 }
@@ -224,3 +225,27 @@ main footer a{
 	margin-top:5px;
 	display:inline-block;
 }
+.user-circle {
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+  }
+  
+  .circle {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #3498db; /* You can change the background color */
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	margin-top: 10px;
+	
+  }
+  
+  .username {
+	font-size: 16px; /* Adjust the font size as needed */
+  }
+ 

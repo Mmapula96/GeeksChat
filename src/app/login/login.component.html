@@ -1,0 +1,21 @@
+
+    <!-- src/app/login/login.component.html -->
+<h2>Geeks Chat login</h2>
+<div class="container">
+  <img src="assets/image.png" alt="Signup Image" class="auth-image">
+  <h1>Login</h1>
+  <form>
+    
+    <div class="input-group" >
+     
+      <input type="text"  [(ngModel)]="email" [ngModelOptions]="{standalone:true}"class="form-control" id="email" placeholder="Enter email" required="required">
+    </div>
+    <div class="input-group">
+    
+      <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone:true}"class="form-control" id="password" placeholder="Enter password" required="required">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
+  </form>
+  <p class="auth-link">Don't have an account? <a routerLink="/register">Signup</a></p>
+</div>
+
