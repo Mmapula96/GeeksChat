@@ -17,7 +17,7 @@ body{
 aside{
 	width:260px;
 	height:800px;
-	background-color:#3b3e49;
+	background-color:rgb(164, 162, 164);
 	display:inline-block;
 	font-size:15px;
 	vertical-align:top;
@@ -228,24 +228,73 @@ main footer a{
 .user-circle {
 	display: flex;
 	align-items: center;
-	margin-bottom: 10px;
+	
   }
   
-  .circle {
+  .circle,.circle1 {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	background-color: #3498db; /* You can change the background color */
-	color: white;
+	background-color: #6e7070;
+	color: rgb(39, 39, 39);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-weight: bold;
-	margin-top: 10px;
-	
+	margin-right: 10px;
+
   }
+ 
   
   .username {
-	font-size: 16px; /* Adjust the font size as needed */
+	font-size: 16px; 
+  }
+  
+
+  
+  button:hover {
+	background-color: #2349c8; 
+  }
+
+  .bt1{
+	background-color: #fafdfb;
+	cursor:pointer;
+	font-size:smaller;
+	float:right;
+	border:none;
+  }
+
+  .bt2{
+	background-color: #f2f7f4;
+	cursor: pointer;
+	font-size:smaller;
+	border:none;
+	margin-bottom: 5px;
+  }
+ /* Rest of your CSS */
+/* Default styles for all screen sizes */
+body {
+    font-size: 16px;
+  }
+  
+  /* Styles for screens smaller than 600px (e.g., mobile phones) */
+  @media (max-width: 600px) {
+    body {
+      font-size: 14px;
+    }
+  }
+  
+  /* Styles for screens between 601px and 1024px (e.g., tablets) */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    body {
+      font-size: 18px;
+    }
+  }
+  
+  /* Styles for screens larger than 1024px (e.g., desktops) */
+  @media (min-width: 1025px) {
+    body {
+      font-size: 20px;
+    }
   }
  

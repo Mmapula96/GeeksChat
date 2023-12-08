@@ -8,20 +8,17 @@
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	background-color: #3498db; /* You can change the background color */
-	color: white;
+	background-color: #6e7070;
+	color: rgb(39, 39, 39);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	font-weight: bold;
 	margin-right: 10px;
+
   }
   
   .username {
-	font-size: 16px; /* Adjust the font size as needed */
+	font-size: 16px; 
   }
-  .line {
-	width: 100%;
-
-	border: 1px solid #3498db; /* You can change the line color */
-  }
+ 

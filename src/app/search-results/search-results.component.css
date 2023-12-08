@@ -5,36 +5,72 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    width: 500px;
-    height: 400px;
-    background-color: cadetblue;
+    width: 400px;
+    height: 600px;
+    background-color: rgb(137, 138, 138);
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
   }
   
-  .user-info {
+  li {
     display: flex;
     align-items: center;
+    justify-content: space-between; 
+    margin-bottom: 10px;
   }
   
-  .avatar {
-    width: 50px; /* Adjust the width and height according to your design */
+  .circle {
+    width: 40px;
     height: 40px;
-    border-radius: 50%; /* Creates a circular avatar */
-    margin-right: 10px; /* Add margin to separate the avatar from the text */
-    border: 2px solid #fff;
-
-  }
-  
-  .add-to-chat-btn {
-    margin-left: 10px;
-  }
-
-.search {
+    border-radius: 50%;
+    background-color: #696a6b; 
+    color: #363636; 
     display: flex;
-    justify-content: space-between; /* Aligns items with space between them */
-    align-items: center; /* Vertically center items */
-    margin-bottom: 10px; /* Add margin for better spacing */
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
   }
   
-  .add-to-chat-btn {
-    margin-left: 10px; /* Add left margin to separate the button from the text */
+  button {
+    background-color: #dde6e1;
+    color: rgb(53, 52, 52);
+    border: none;
+    cursor: pointer;
+    margin-left: 80px;
+
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+  /* Rest of your CSS */
+/* Default styles for all screen sizes */
+body {
+  font-size: 16px;
+}
+
+/* Styles for screens smaller than 600px (e.g., mobile phones) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
   }
+}
+
+/* Styles for screens between 601px and 1024px (e.g., tablets) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  body {
+    font-size: 18px;
+  }
+}
+
+/* Styles for screens larger than 1024px (e.g., desktops) */
+@media (min-width: 1025px) {
+  body {
+    font-size: 20px;
+  }
+}
+  

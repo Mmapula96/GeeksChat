@@ -2,9 +2,10 @@
     <div id="container">
       <aside>
         <header>
-          <button (click)="logout()">Logout</button>
+          <button class="bt1" (click)="logout()"> <mat-icon>logout</mat-icon>Logout </button>
+          <button class="bt2" (click)="searchUsers()"><mat-icon>search</mat-icon>Search</button>
           <input type="text" [(ngModel)]="searchName" placeholder="Enter name">
-         <button (click)="searchUsers()">Search</button>
+        
 
           <div *ngFor="let user of users">
             
@@ -18,14 +19,14 @@
 
                  
 
-                  <app-chatlist (userSelected)="onUserSelected($event)"></app-chatlist>
+                  <app-chatlist (userSelected)="onUserSelected($event)" style="cursor:pointer" ></app-chatlist>
  
         </aside>
       <main>
         <div class="chat-container">
   
-  <header *ngIf="selectedUser">
-    <div class="circle">{{ selectedUser.username.charAt(0).toUpperCase() }}</div>
+  <header *ngIf="selectedUser" class="header-content" >
+    <div class="circle1">{{ selectedUser.username.charAt(0).toUpperCase()}}</div>
     <div>
     Chat with {{ selectedUser.username }}
     </div>

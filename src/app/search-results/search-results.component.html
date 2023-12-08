@@ -1,17 +1,14 @@
-<!-- <div class="search">
-
-    <span>{{ users }}</span>
-    <button (click)="addContact()">Add to Chat</button>
-    
-    <div>
-      -->
 
       <div class="search">
         <ul>
-        
-            <span>{{ users.username }}</span>
-            <button (click)="addContact(users)">Add to Chat</button>
-        
+          <li>
+           
+            <div class="circle">{{ users.username.charAt(0).toUpperCase() }}</div>
+       
+            {{ users.username }}
+       
+            <button (click)="addContact(users)"><mat-icon>person</mat-icon>Add to Chat</button>
+          </li>
         </ul>
       </div>
  
