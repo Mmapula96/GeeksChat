@@ -23,7 +23,7 @@ export class SearchResultsComponent implements OnInit{
     
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,private router:Router,private userService : UserService) {
     // 'data' will now contain the information passed to the dialog
-    this.users = data[0] || [];   
+    this.users = data[0];   
   }
 
   

@@ -297,4 +297,37 @@ body {
       font-size: 20px;
     }
   }
+  .chat-container {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+  }
+  
  
+  
+  /* Style for the input area and send button */
+  .footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	background-color: #f0f0f0; /* Light gray background color */
+  }
+  
+  .message {
+	width:350px;
+	padding: 8px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-right: 8px;
+	
+  }
+
+  .send{
+	float:right;
+  }
+
+  
+
+  
+  

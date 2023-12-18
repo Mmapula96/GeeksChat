@@ -6,15 +6,15 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
-import { SearchComponent } from './search/search.component';
+import {HttpClientModule} from '@angular/common/http';;
 import { UserService } from './user.service';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChatlistComponent } from './chatlist/chatlist.component';
-
-
-
+import { SearchComponent } from './search/search.component';
+import { ChatComponent } from './chat/chat.component';
+import { WebsocketService } from './websocket.service';
+import { MessageService } from './message.service';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import { ChatlistComponent } from './chatlist/chatlist.component';
     SearchComponent,
     SearchResultsComponent,
     ChatlistComponent,
+    ChatComponent
 
   ],
   imports: [
@@ -35,7 +36,7 @@ import { ChatlistComponent } from './chatlist/chatlist.component';
     MatDialogModule
    
   ],
-  providers: [UserService],
+  providers: [UserService,WebsocketService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

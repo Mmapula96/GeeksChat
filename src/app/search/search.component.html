@@ -17,10 +17,10 @@
             </div>
                   </header>
 
-                 
+                 <div>
 
                   <app-chatlist (userSelected)="onUserSelected($event)" style="cursor:pointer" ></app-chatlist>
- 
+ </div>
         </aside>
       <main>
         <div class="chat-container">
@@ -32,19 +32,30 @@
     </div>
   </header>
 
-</div>
-        <ul id="chat">
+ </div>
+         <ul id="chat">
           <li class="you">
             <div class="entete">
-              
-            </div>
+            
+                  <div *ngFor="let msg of messages">
+                    {{ msg }}
+                  </div>
+                </div>
           </li>
         </ul>
+
+        
         <footer>
-          <textarea placeholder="Type your message"></textarea>
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png" alt="">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt="">
-          <a href="#">Send</a>
+          <div>
+            <input class="message" [(ngModel)]="message" placeholder="Type your message......" />
+            <button class="send" (click)="sendMessage()"><mat-icon>send</mat-icon>Send</button>
+          </div>
         </footer>
-      </main>
+      </main> 
+
+      
+
+
+      
+
     
