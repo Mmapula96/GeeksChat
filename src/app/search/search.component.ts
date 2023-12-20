@@ -80,13 +80,15 @@ export class SearchComponent implements OnInit,OnDestroy {
   onUserSelected(user: User): void {
     this.selectedUser = user;
     this.convoId = this.messageService.getConversationId(user.userid);
-    this.messageService.getConversationMessages(user.userid)?.subscribe((messages: Message[]) => {
-      // Update your component's messages array
-      this.messages = messages;
-    });
-    console.log(this.convoId);
+  
 
+    this.messageService.getMessages(this.convoId)
+      .subscribe(messages => this.messages = messages);
+  
   }
+
+
+
 
   // Method to open a dialog to display search results
   openDialog(users: any): void {
@@ -108,12 +110,7 @@ export class SearchComponent implements OnInit,OnDestroy {
 
     // Connect to the WebSocket server
      this.websocketService.connect(() => {
-     
-      // this.messageService.getMessages(this.conversationId).subscribe((messages) => {
-      //   // Update your component's messages array
-      //   this.messages = messages;
-      // });
-  });
+});
       
     }
 
@@ -142,7 +139,7 @@ sendMessage() {
     };
 
     // Assuming you have a service to handle message sending, call it here
-   // this.websocketService.sendMessage('/app/topic/messages', newMessage);
+   //this.websocketService.sendMessage('/app/topic/messages', newMessage);
 
     // Assuming addMessageToConversation handles conversation logic correctly
     this.messageService.addMessageToConversation(this.selectedUser.userid, newMessage);

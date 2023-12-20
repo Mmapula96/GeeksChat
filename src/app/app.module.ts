@@ -15,6 +15,7 @@ import { SearchComponent } from './search/search.component';
 import { ChatComponent } from './chat/chat.component';
 import { WebsocketService } from './websocket.service';
 import { MessageService } from './message.service';
+import { TimestampPipe } from './timestamp.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MessageService } from './message.service';
     SearchComponent,
     SearchResultsComponent,
     ChatlistComponent,
-    ChatComponent
+    ChatComponent,
+    TimestampPipe
 
   ],
   imports: [

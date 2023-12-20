@@ -65,7 +65,7 @@ export class WebsocketService {
       // Handle the received message
       const newMessage = JSON.parse(message.body);
       console.log('Received message:', newMessage);
-      // Update your frontend UI or message store
+      
     });
   }
   

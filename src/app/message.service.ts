@@ -44,16 +44,11 @@ this.websocketService.sendMessage('/app/topic/messages', message);
 console.log('sent message',message.content)
   }
 
-  getMessages(conversationId: string): Observable<Message[]> {
-  
-    const url = `${this.apiUrl}/messages/${conversationId}`;
-    return this.http.get<Message[]>(url);
-  
-  }
 
   // Method to get conversation messages for a specific conversation
   getConversationMessages(user2Id: number): Observable<Message[]> {
     const conversation = this.getOrCreateConversation(user2Id);
+    console.log(conversation);
     return conversation.asObservable();
   }
 
@@ -80,6 +75,15 @@ console.log('sent message',message.content)
     return user1Id < user2Id ? `${user1Id}_${user2Id}` : `${user2Id}_${user1Id}`;
   }
 
+
+
+
+  getMessages(conversationId: string): Observable<any[]> {
+  
+    const url = `${this.apiUrl}/${conversationId}`;
+    return this.http.get<any[]>(url);
+  
+  }
   
   
 }
