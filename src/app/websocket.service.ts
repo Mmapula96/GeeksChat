@@ -3,6 +3,7 @@ import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { StompSubscription } from '@stomp/stompjs';
 import { Observable, Subject } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class WebsocketService {
   private messageSubject: Subject<any> = new Subject<any>();
   private isConnected: boolean = false;
 
-  constructor() { 
+  constructor(private userService:UserService) { 
     
   }
 
@@ -26,8 +27,9 @@ export class WebsocketService {
         console.log('Connected to WebSocket');
         this.isConnected = true;
 
-
-        this.stompClient.subscribe('/topic/messages', (message: Stomp.Message) => {
+        // Update: Use a conversation-specific topic
+        const conversationTopic = 'api/messages/app/topic/messages/' + this.userService.getLoggedInUserId();
+        this.stompClient.subscribe(conversationTopic, (message: Stomp.Message) => {
           this.messageSubject.next(JSON.parse(message.body));
         });
 
@@ -52,11 +54,20 @@ export class WebsocketService {
 
   sendMessage(destination: string, message: any): void {
     this.stompClient.send(destination, {}, JSON.stringify(message));
+    this.messageSubject.next(message);
   }
 
-  getMessages(): Observable<any> {
-    return this.messageSubject.asObservable();
-  }
 
+
+  subscribeToConversation(conversationId: string): void {
+    const conversationTopic = `api/messages/app/topic/messages/${conversationId}`;
+    this.stompClient.subscribe(conversationTopic, (message: Stomp.Message) => {
+      // Handle the received message
+      const newMessage = JSON.parse(message.body);
+      console.log('Received message:', newMessage);
+      // Update your frontend UI or message store
+    });
+  }
+  
 
 }

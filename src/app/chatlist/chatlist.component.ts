@@ -17,7 +17,10 @@ export class ChatlistComponent implements OnInit,OnDestroy{
   private destroy$: Subject<void> = new Subject<void>();
   loggedInUserId: any;
    // Property to hold the logged-in user ID
-  userId: any;
+  // userId: any;
+  userid:any;
+
+  
   
   // Event emitter to notify the search component when a user is selected
   @Output() userSelected = new EventEmitter<User>();
@@ -28,33 +31,33 @@ export class ChatlistComponent implements OnInit,OnDestroy{
 
   ngOnInit(): void {
     // Retrieve the logged-in user ID from local storage
-    const storedUserString = localStorage.getItem('loggedInUser')
+    const storedUserString = sessionStorage.getItem('loggedInUser')
     if(storedUserString) {
       const storedUserId = JSON.parse(storedUserString);
-      this.userId = storedUserId;
-      console.log("LOGGED IN USER ID: ", this.userId)
+      this.userid = storedUserId;
+      console.log("LOGGED IN USER ID: ", this.userid)
     }
  // Fetch the chat list for the logged-in user
-    this.getChatList(this.userId);
+    this.getChatList(this.userid);
   }
 
   // Method to fetch and update the chat list for the logged-in user
-  private getChatList(userId: any) {
-    console.log('Calling getChatList with userId:', userId);
+  private getChatList(userid: any) {
+    console.log('Calling getChatList with userId:', userid);
   // Subscribe to the chat list updates using UserService
-    this.userService.getChatList(userId).pipe(takeUntil(this.destroy$)).subscribe(
+    this.userService.getChatList(userid).pipe(takeUntil(this.destroy$)).subscribe(
         // Callback function executed on successful response
       (updatedChatList) => {
         console.log('Received updated chat list:', updatedChatList);
   
         if (updatedChatList && updatedChatList.length > 0) {
           // Exclude the logged-in user from the chat list
-          this.Searchuser = updatedChatList.filter(user => user.id !== userId);
+          this.Searchuser = updatedChatList.filter(user => user.userid !== userid);
   
-          console.log('Chat list updated:', this.userId);
+          console.log('Chat list updated:', this.userid);
          
         } else {
-          console.warn('Received empty or invalid chat list for userId:', userId);
+          console.warn('Received empty or invalid chat list for userId:', userid);
         }
       },
        // Callback function executed in case of an error
@@ -77,5 +80,6 @@ export class ChatlistComponent implements OnInit,OnDestroy{
     this.destroy$.complete();
   }
  
+
   
 }

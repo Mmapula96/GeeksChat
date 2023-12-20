@@ -3,8 +3,11 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchResultsComponent } from '../search-results/search-results.component';
-import { User } from '../usersearchfolder/searchuser';
+import { Message, User } from '../usersearchfolder/searchuser';
 import { WebsocketService } from '../websocket.service';
+import { MessageService } from '../message.service';
+import { ThisReceiver } from '@angular/compiler';
+import { timestamp } from 'rxjs';
 
 
 
@@ -14,13 +17,6 @@ import { WebsocketService } from '../websocket.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit,OnDestroy {
-
-   // Method to handle user logout
-logout() {
-  console.log('User logged out');
-  // Navigate to the login page upon logout
- this.router.navigateByUrl("/login")
-}
 
 // Property to hold the search input
   searchName: string ='';
@@ -32,17 +28,27 @@ logout() {
   selectedUser: User | null = null;
   message: string = '';
   
-  userId:any;
-   messages: string[] = [];
- 
+   messages: any[] = [];
+   convoId: string = '';
+   userid: any;
+   User: any;
+   user2Id: any;
+   conversationId: string='';
 
   constructor(private userService: UserService, 
     private router:Router,
     private dialog:MatDialog,
-    private websocketService:WebsocketService
+    private websocketService:WebsocketService,
+    private messageService:MessageService
 ) {
  
 }
+   // Method to handle user logout
+   logout() {
+    console.log('User logged out');
+    // Navigate to the login page upon logout
+   this.router.navigateByUrl("/login")
+  }
   
 
   // Method to search for users based on the entered username
@@ -54,8 +60,8 @@ logout() {
           console.log("this is the user: ", data);//it shows the name i searched
 
         //   // Filter out the logged-in user from the search results
-        // const loggedInUserId = this.userService.getLoggedInUserId();
-        // this.users = data.filter((user) => user.searchName !== loggedInUserId);
+         //const loggedInUserId = this.userService.getLoggedInUserId();
+        //this.users = data.filter((user) => user.searchName !== loggedInUserId);
           // Store fetched users in the 'users' array
           this.users = data;
           // Open a dialog to display search results
@@ -73,18 +79,22 @@ logout() {
    // Method to handle user selection from the search results
   onUserSelected(user: User): void {
     this.selectedUser = user;
+    this.convoId = this.messageService.getConversationId(user.userid);
+    this.messageService.getConversationMessages(user.userid)?.subscribe((messages: Message[]) => {
+      // Update your component's messages array
+      this.messages = messages;
+    });
+    console.log(this.convoId);
 
   }
 
   // Method to open a dialog to display search results
-  openDialog(users: any[]): void {
+  openDialog(users: any): void {
     const dialogRef = this.dialog.open(SearchResultsComponent, {  
     // Pass the search results as data to the dialog
      data: users,
   
     });
-
-   
   
   }
 
@@ -94,35 +104,55 @@ logout() {
     this.websocketService.disconnect();
   }
 
-  ngOnInit(){
-    this.websocketService.connect(() => {
-      this.websocketService.getMessages().subscribe((msg: any) => {
-        console.log(msg);
-        this.messages.push(msg);
+  ngOnInit() {
 
-      });
-    });
+    // Connect to the WebSocket server
+     this.websocketService.connect(() => {
+     
+      // this.messageService.getMessages(this.conversationId).subscribe((messages) => {
+      //   // Update your component's messages array
+      //   this.messages = messages;
+      // });
+  });
+      
+    }
 
-  }
 
 
-
- // Method to send a message
- sendMessage() {
+// Method to send a message
+sendMessage() {
   // Check if a user is selected
   if (this.selectedUser) {
+    // Log values for debugging
+    console.log('Sender ID:', this.userService.getLoggedInUserId());
+    console.log('Recipient ID:', this.selectedUser.userid);
+
+
+
+    // Set the correct conversationId based on your logic
+    const conversationId = `${this.userService.getLoggedInUserId()}_${this.selectedUser.userid}`;
+    console.log('Constructed ConversationId:', conversationId);
+    
+
+    const newMessage: Message = {
+      sender:this.userService.getLoggedInUserId(),
+      content: this.message,
+      conversationId: conversationId,
+      timestamp: new Date().toISOString(),
+    };
+
     // Assuming you have a service to handle message sending, call it here
-    this.websocketService.sendMessage('/topic/messages', this.message);
+   // this.websocketService.sendMessage('/app/topic/messages', newMessage);
+
+    // Assuming addMessageToConversation handles conversation logic correctly
+    this.messageService.addMessageToConversation(this.selectedUser.userid, newMessage);
 
     // Clear the message input field
     this.message = '';
- 
   } else {
     // Handle the case when no user is selected
     console.error('No user selected to send a message to.');
   }
-
-
 }
 
 

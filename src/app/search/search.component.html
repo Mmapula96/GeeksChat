@@ -33,7 +33,7 @@
   </header>
 
  </div>
-         <ul id="chat">
+         <!-- <ul id="chat">
           <li class="you">
             <div class="entete">
             
@@ -51,7 +51,26 @@
             <button class="send" (click)="sendMessage()"><mat-icon>send</mat-icon>Send</button>
           </div>
         </footer>
-      </main> 
+      </main>  -->
+
+      <ul id="chat">
+      
+
+        <li *ngFor="let message of messages">
+          <div>{{ message.content }}</div>
+          <!-- <div>Sender: {{ message.sender }}</div> -->
+          <div>{{ message.timestamp |  date:'shortTime'}}</div>
+        </li>
+      </ul>
+      
+      <footer>
+        <div>
+          <input class="message" [(ngModel)]="message" placeholder="Type your message......" />
+          <button class="send" (click)="sendMessage()"><mat-icon>send</mat-icon>Send</button>
+        </div>
+      </footer>
+
+  
 
       
 

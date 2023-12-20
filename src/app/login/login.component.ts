@@ -42,7 +42,7 @@ export class LoginComponent{
           alert("Login Successful");
 
           // Store the logged-in user ID in local storage for session persistence
-          localStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUserId));
+          sessionStorage.setItem('loggedInUser', JSON.stringify(this.loggedInUserId));
           
           // Navigate to the '/search' route upon successful login
           this.router.navigateByUrl("/search");

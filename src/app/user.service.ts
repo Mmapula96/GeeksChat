@@ -49,8 +49,17 @@ export class UserService {
     this.userId = loggedInUserId;
   }
 
+  // getLoggedInUserId() : any{
+  //   const userString = localStorage.getItem('loggedInUser');
+  //   if(userString !== null) {
+  //     const stringObj = JSON.parse(userString);
+  //     return stringObj;
+
+  //   }  
+  // }
+
   getLoggedInUserId() : any{
-    const id = localStorage.getItem('loggedInUser');
+    const id = sessionStorage.getItem('loggedInUser');
     return id;
   }
 
