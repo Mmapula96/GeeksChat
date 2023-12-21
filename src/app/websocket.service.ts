@@ -17,7 +17,7 @@ export class WebsocketService {
   private isConnected: boolean = false;
   private users : User[] = [];
 
-  constructor(private userService:UserService , private messageService : MessageService) { 
+  constructor(private userService:UserService) { 
     
   }
 
@@ -30,11 +30,7 @@ export class WebsocketService {
         console.log('Connected to WebSocket');
         this.isConnected = true;
         this.subscribetoconvs();
-        // Update: Use a conversation-specific topic
-        // const conversationTopic = 'api/messages/app/topic/messages/' + this.userService.getLoggedInUserId();
-        // this.stompClient.subscribe(conversationTopic, (message: Stomp.Message) => {
-        //   this.messageSubject.next(JSON.parse(message.body));
-        // });
+       
 
         if (callback) {
           callback();
@@ -65,10 +61,9 @@ export class WebsocketService {
     const conversationTopic = `/topic/messages/${conversationId}`;
     this.stompClient.subscribe(conversationTopic, (message: Stomp.Message) => {
       // Handle the received message
-      //const receivedMessage: Message = JSON.parse(message.body);
       this.messageSubject.next(message.body);
       const newMessage = message.body;
-     // this.messageService.addMessage(conversationId,newMessage)
+    
       console.log('Received message:', newMessage);
       
     });

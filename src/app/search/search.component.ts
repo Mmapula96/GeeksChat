@@ -122,7 +122,7 @@ sendMessage() {
         sender: this.userService.getLoggedInUserId(),
         content: trimmedMessage, // Use the trimmed message content
         conversationId: conversationId,
-        // timestamp: new Date().toISOString(),
+        
 
       };
 
