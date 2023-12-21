@@ -14,7 +14,7 @@ export class MessageService {
   private apiUrl = 'http://localhost:8080/api/messages';
 
 
-  constructor(private userService : UserService,private http:HttpClient,private websocketService:WebsocketService){
+  constructor(private userService : UserService,private http:HttpClient){
     
   }
   // Method to add a message to a conversation
@@ -40,8 +40,8 @@ export class MessageService {
     const updatedMessages = [...currentMessages, message];
     conversation.next(updatedMessages);
 // Send the message through WebSocket
-this.websocketService.sendMessage('/app/topic/messages', message);
-console.log('sent message',message.content)
+ 
+    console.log('sent message',message.content)
   }
 
 
@@ -52,31 +52,11 @@ console.log('sent message',message.content)
     return conversation.asObservable();
   }
 
-  // getMessages(conversationId: string): Observable<Message[]> {
-  //   // Fetch initial messages using HTTP
-  // const initialMessages$ = this.http.get<Message[]>(`${this.apiUrl}/messages/${conversationId}`);
-
-  // // Subscribe to WebSocket updates
-  // const websocketMessages$ = this.websocketService.getMessages().pipe(
-  //   filter((message) => message.conversationId === conversationId)
-  // );
-
-  // // Merge HTTP and WebSocket messages
-  // return merge(initialMessages$, websocketMessages$);
-  // }
-  // getMessages(conversationId: string): Observable<Message[]> {
-  //   const url = `${this.apiUrl}/messages/${conversationId}`;
-  //   return this.http.get<Message[]>(url);
-  // }
-
   // Method to get a conversation ID based on two user IDs
   getConversationId(user2Id: number): string {
     const user1Id = this.userService.getLoggedInUserId();
     return user1Id < user2Id ? `${user1Id}_${user2Id}` : `${user2Id}_${user1Id}`;
   }
-
-
-
 
   getMessages(conversationId: string): Observable<any[]> {
   

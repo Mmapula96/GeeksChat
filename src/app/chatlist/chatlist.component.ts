@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core
 import { Subject, takeUntil } from 'rxjs';
 import { UserService } from '../user.service';
 import { User } from '../usersearchfolder/searchuser';
+import { WebsocketService } from '../websocket.service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class ChatlistComponent implements OnInit,OnDestroy{
  
   user:any;
 
-  constructor( private userService: UserService) {}
+  constructor( private userService: UserService , private websocketService : WebsocketService) {}
 
   ngOnInit(): void {
     // Retrieve the logged-in user ID from local storage
@@ -39,6 +40,7 @@ export class ChatlistComponent implements OnInit,OnDestroy{
     }
  // Fetch the chat list for the logged-in user
     this.getChatList(this.userid);
+
   }
 
   // Method to fetch and update the chat list for the logged-in user
@@ -53,7 +55,7 @@ export class ChatlistComponent implements OnInit,OnDestroy{
         if (updatedChatList && updatedChatList.length > 0) {
           // Exclude the logged-in user from the chat list
           this.Searchuser = updatedChatList.filter(user => user.userid !== userid);
-  
+          this.websocketService.setUsers(this.Searchuser);
           console.log('Chat list updated:', this.userid);
          
         } else {

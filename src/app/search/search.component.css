@@ -327,7 +327,42 @@ body {
 	float:right;
   }
 
-  
+  .whatsapp-style {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
 
+  .chat-message {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 70%;
+    margin-bottom: 10px;
+  }
+
+  .message-content {
+    background-color: #DCF8C6;
+    padding: 8px;
+    border-radius: 8px;
+    word-wrap: break-word;
+  }
+
+  .message-timestamp {
+    font-size: 0.8em;
+    color: #888;
+    align-self: flex-end;
+  }
+
+  .my-message {
+	text-align: right;
+	/* Add other styles for messages sent by the logged-in user */
+  }
+  
+  .selected-user-message {
+	text-align: left;
+	/* Add other styles for messages sent by the selected user */
+  }
   
   

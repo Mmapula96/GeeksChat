@@ -6,10 +6,6 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
 import { Message, User } from '../usersearchfolder/searchuser';
 import { WebsocketService } from '../websocket.service';
 import { MessageService } from '../message.service';
-import { ThisReceiver } from '@angular/compiler';
-import { timestamp } from 'rxjs';
-
-
 
 @Component({
   selector: 'app-search',
@@ -35,6 +31,8 @@ export class SearchComponent implements OnInit,OnDestroy {
    user2Id: any;
    conversationId: string='';
 
+
+
   constructor(private userService: UserService, 
     private router:Router,
     private dialog:MatDialog,
@@ -58,10 +56,6 @@ export class SearchComponent implements OnInit,OnDestroy {
         // Callback function executed on successful response
         (data) => {
           console.log("this is the user: ", data);//it shows the name i searched
-
-        //   // Filter out the logged-in user from the search results
-         //const loggedInUserId = this.userService.getLoggedInUserId();
-        //this.users = data.filter((user) => user.searchName !== loggedInUserId);
           // Store fetched users in the 'users' array
           this.users = data;
           // Open a dialog to display search results
@@ -80,8 +74,6 @@ export class SearchComponent implements OnInit,OnDestroy {
   onUserSelected(user: User): void {
     this.selectedUser = user;
     this.convoId = this.messageService.getConversationId(user.userid);
-  
-
     this.messageService.getMessages(this.convoId)
       .subscribe(messages => this.messages = messages);
   
@@ -100,7 +92,6 @@ export class SearchComponent implements OnInit,OnDestroy {
   
   }
 
-
   ngOnDestroy(): void {
     // Implement any cleanup logic if needed
     this.websocketService.disconnect();
@@ -110,42 +101,47 @@ export class SearchComponent implements OnInit,OnDestroy {
 
     // Connect to the WebSocket server
      this.websocketService.connect(() => {
+
+
 });
       
     }
 
-
-
-// Method to send a message
 sendMessage() {
   // Check if a user is selected
   if (this.selectedUser) {
-    // Log values for debugging
-    console.log('Sender ID:', this.userService.getLoggedInUserId());
-    console.log('Recipient ID:', this.selectedUser.userid);
+    // Trim the message content
+    const trimmedMessage = this.message.trim();
 
+    // Check if the trimmed message content is not empty
+    if (trimmedMessage !== '') {
+      // Set the correct conversationId based on your logic
+      const conversationId = this.messageService.getConversationId(this.selectedUser.userid);
 
+      const newMessage: Message = {
+        sender: this.userService.getLoggedInUserId(),
+        content: trimmedMessage, // Use the trimmed message content
+        conversationId: conversationId,
+        // timestamp: new Date().toISOString(),
 
-    // Set the correct conversationId based on your logic
-    const conversationId = `${this.userService.getLoggedInUserId()}_${this.selectedUser.userid}`;
-    console.log('Constructed ConversationId:', conversationId);
+      };
+
+      // Add the new message to the UI immediately
+      this.messages.push(newMessage);
+
+      // Clear the message input field
+      this.message = '';
+
+      // Assuming you have a service to handle message sending, call it here
+      this.websocketService.sendMessage(`/app/api/messages/${conversationId}` , newMessage);
+     
     
-
-    const newMessage: Message = {
-      sender:this.userService.getLoggedInUserId(),
-      content: this.message,
-      conversationId: conversationId,
-      timestamp: new Date().toISOString(),
-    };
-
-    // Assuming you have a service to handle message sending, call it here
-   //this.websocketService.sendMessage('/app/topic/messages', newMessage);
-
-    // Assuming addMessageToConversation handles conversation logic correctly
-    this.messageService.addMessageToConversation(this.selectedUser.userid, newMessage);
-
-    // Clear the message input field
-    this.message = '';
+      
+    } else {
+      // Handle the case when the message content is empty
+      console.error('Cannot send an empty message.');
+      
+    }
   } else {
     // Handle the case when no user is selected
     console.error('No user selected to send a message to.');

@@ -33,30 +33,12 @@
   </header>
 
  </div>
-         <!-- <ul id="chat">
-          <li class="you">
-            <div class="entete">
-            
-                  <div *ngFor="let msg of messages">
-                    {{ msg }}
-                  </div>
-                </div>
-          </li>
-        </ul>
-
         
-        <footer>
-          <div>
-            <input class="message" [(ngModel)]="message" placeholder="Type your message......" />
-            <button class="send" (click)="sendMessage()"><mat-icon>send</mat-icon>Send</button>
-          </div>
-        </footer>
-      </main>  -->
 
-      <ul id="chat">
-        <li *ngFor="let message of messages">
-          <div>{{ message.content }}</div> 
-          <div>{{ message.timestamp | timestamp | date: 'shortTime' }}</div>
+ <ul id="chat" class="whatsapp-style">
+        <li *ngFor="let message of messages" class="chat-message" class="chat-message">
+          <div class="message-content">{{ message.content }}</div> 
+          
         </li>
       </ul>
       
