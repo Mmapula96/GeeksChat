@@ -89,24 +89,7 @@ aside li h3{
 	font-weight:normal;
 }
 
-.status{
-	width:8px;
-	height:8px;
-	border-radius:50%;
-	display:inline-block;
-	margin-right:7px;
-}
-.green{
-	background-color:#58b666;
-}
-.orange{
-	background-color:#ff725d;
-}
-.blue{
-	background-color:#6fbced;
-	margin-right:0;
-	margin-left:7px;
-}
+
 
 main header{
 	height:110px;
@@ -271,8 +254,7 @@ main footer a{
 	border:none;
 	margin-bottom: 5px;
   }
- /* Rest of your CSS */
-/* Default styles for all screen sizes */
+
 body {
     font-size: 16px;
   }
@@ -314,55 +296,36 @@ body {
 	background-color: #f0f0f0; /* Light gray background color */
   }
   
-  .message {
-	width:350px;
-	padding: 8px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	margin-right: 8px;
-	
-  }
+ 
 
   .send{
 	float:right;
   }
-
-  .whatsapp-style {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .chat-message {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 8px;
-    max-width: 70%;
-    margin-bottom: 10px;
-  }
-
-  .message-content {
-    background-color: #DCF8C6;
-    padding: 8px;
-    border-radius: 8px;
-    word-wrap: break-word;
-  }
-
-  .message-timestamp {
-    font-size: 0.8em;
-    color: #888;
-    align-self: flex-end;
-  }
-
-  .my-message {
+  .sender {
 	text-align: right;
-	/* Add other styles for messages sent by the logged-in user */
+	background-color: #aef7cc;
+	margin-bottom: 10px;
+	border-radius:10px;
+	border: 1px solid black;
   }
   
-  .selected-user-message {
+  .receiver {
 	text-align: left;
-	/* Add other styles for messages sent by the selected user */
+	background-color: #FFFFFF;
+   margin-bottom: 10px;
+   border-radius:10px;
+	border: 1px solid rgb(0, 0, 0);
+	
   }
+
+  .message-content{
+	color:#0e0f11;
+	word-wrap: break-word;
+  }
+  .message{
+width:365px;
+height:33px;
+  }
+  
   
   

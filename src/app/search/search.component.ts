@@ -6,6 +6,7 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
 import { Message, User } from '../usersearchfolder/searchuser';
 import { WebsocketService } from '../websocket.service';
 import { MessageService } from '../message.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-search',
@@ -13,6 +14,7 @@ import { MessageService } from '../message.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit,OnDestroy {
+[x: string]: any;
 
 // Property to hold the search input
   searchName: string ='';
@@ -23,7 +25,6 @@ export class SearchComponent implements OnInit,OnDestroy {
   // Property to hold the currently logged-in user
   selectedUser: User | null = null;
   message: string = '';
-  
    messages: any[] = [];
    convoId: string = '';
    userid: any;
@@ -31,14 +32,20 @@ export class SearchComponent implements OnInit,OnDestroy {
    user2Id: any;
    conversationId: string='';
 
+   // Expose userService through a public method
+   public getUserService(): UserService {
+     return this.userService;
+   }
+ 
 
-
-  constructor(private userService: UserService, 
+  constructor(public userService: UserService, 
     private router:Router,
     private dialog:MatDialog,
     private websocketService:WebsocketService,
     private messageService:MessageService
 ) {
+
+  
  
 }
    // Method to handle user logout
@@ -70,14 +77,30 @@ export class SearchComponent implements OnInit,OnDestroy {
   
   }
 
-   // Method to handle user selection from the search results
+  //  // Method to handle user selection from the search results
+  // onUserSelected(user: User): void {
+  //   this.selectedUser = user;
+  //   this.convoId = this.messageService.getConversationId(user.userid);
+  //   this.messageService.getMessages(this.convoId)
+  //     .subscribe(messages => this.messages = messages);
+  
+  // }
+
   onUserSelected(user: User): void {
     this.selectedUser = user;
     this.convoId = this.messageService.getConversationId(user.userid);
     this.messageService.getMessages(this.convoId)
-      .subscribe(messages => this.messages = messages);
-  
+      .subscribe(messages => {
+        this.messages = messages.map(message => {
+          // Convert the timestamp to a Date object for received messages
+          if (message.sender !== this.userService.getLoggedInUserId()) {
+            return { ...message, timestamp: new Date(message.timestamp) };
+          }
+          return message;
+        });
+      });
   }
+
 
 
 
@@ -100,10 +123,9 @@ export class SearchComponent implements OnInit,OnDestroy {
   ngOnInit() {
 
     // Connect to the WebSocket server
-     this.websocketService.connect(() => {
-
-
+     this.websocketService.connect(() => {  
 });
+
       
     }
 
@@ -115,14 +137,14 @@ sendMessage() {
 
     // Check if the trimmed message content is not empty
     if (trimmedMessage !== '') {
-      // Set the correct conversationId based on your logic
+ 
       const conversationId = this.messageService.getConversationId(this.selectedUser.userid);
 
       const newMessage: Message = {
         sender: this.userService.getLoggedInUserId(),
-        content: trimmedMessage, // Use the trimmed message content
+        content: trimmedMessage, 
         conversationId: conversationId,
-        
+      // timestamp: new Date(),
 
       };
 
@@ -132,9 +154,8 @@ sendMessage() {
       // Clear the message input field
       this.message = '';
 
-      // Assuming you have a service to handle message sending, call it here
+      
       this.websocketService.sendMessage(`/app/api/messages/${conversationId}` , newMessage);
-     
     
       
     } else {

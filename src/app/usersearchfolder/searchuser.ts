@@ -1,3 +1,5 @@
+import { DatePipe } from "@angular/common";
+
 export class Searchuser {
     searchName: string ='';
 
@@ -18,5 +20,5 @@ export interface Message {
   sender: string;
   content: string;
  conversationId: string;
- 
+  //timestamp:Date,
 }

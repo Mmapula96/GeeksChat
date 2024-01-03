@@ -33,21 +33,21 @@
   </header>
 
  </div>
-        
-
  <ul id="chat" class="whatsapp-style">
-        <li *ngFor="let message of messages" class="chat-message" class="chat-message">
-          <div class="message-content">{{ message.content }}</div> 
-          
-        </li>
-      </ul>
-      
-      <footer>
-        <div>
-          <input class="message" [(ngModel)]="message" placeholder="Type your message..." />
-          <button class="send" (click)="sendMessage()"><mat-icon>send</mat-icon>Send</button>
-        </div>
-      </footer>
+  <li *ngFor="let message of messages" class="chat-message" [ngClass]="{'sender': message.sender === userService.getLoggedInUserId(), 'receiver': message.sender !== userService.getLoggedInUserId()}">
+    <div class="message-sender">{{ message.sender }}</div>
+    <div class="message-content">{{ message.content }}</div>
+    <!-- <div class="message-time">{{ message.timestamp | date:'medium' }}</div> -->
+  </li>
+</ul>
+
+<footer>
+  <div>
+    <input class="message" [(ngModel)]="message" placeholder="Type your message..." />
+    <button class="send" (click)="sendMessage()"><mat-icon>send</mat-icon>Send</button>
+  </div>
+</footer>
+
 
       
 

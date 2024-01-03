@@ -26,7 +26,7 @@ import { TimestampPipe } from './timestamp.pipe';
     SearchResultsComponent,
     ChatlistComponent,
     ChatComponent,
-    TimestampPipe
+    TimestampPipe,
 
   ],
   imports: [
