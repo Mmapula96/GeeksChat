@@ -16,9 +16,9 @@ export class ChatlistComponent implements OnInit,OnDestroy{
 
 // Subject to manage the destruction of observables
   private destroy$: Subject<void> = new Subject<void>();
+  // Property to hold the logged-in user ID
   loggedInUserId: any;
-   // Property to hold the logged-in user ID
-  // userId: any;
+   
   userid:any;
 
   
@@ -31,7 +31,7 @@ export class ChatlistComponent implements OnInit,OnDestroy{
   constructor( private userService: UserService , private websocketService : WebsocketService) {}
 
   ngOnInit(): void {
-    // Retrieve the logged-in user ID from local storage
+    // Retrieve the logged-in user ID from session storage
     const storedUserString = sessionStorage.getItem('loggedInUser')
     if(storedUserString) {
       const storedUserId = JSON.parse(storedUserString);
@@ -40,6 +40,8 @@ export class ChatlistComponent implements OnInit,OnDestroy{
     }
  // Fetch the chat list for the logged-in user
     this.getChatList(this.userid);
+
+    
 
   }
 
@@ -81,7 +83,6 @@ export class ChatlistComponent implements OnInit,OnDestroy{
     this.destroy$.next();
     this.destroy$.complete();
   }
- 
 
   
 }

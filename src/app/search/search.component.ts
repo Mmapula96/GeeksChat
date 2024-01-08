@@ -6,7 +6,7 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
 import { Message, User } from '../usersearchfolder/searchuser';
 import { WebsocketService } from '../websocket.service';
 import { MessageService } from '../message.service';
-import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-search',
@@ -14,7 +14,6 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit,OnDestroy {
-[x: string]: any;
 
 // Property to hold the search input
   searchName: string ='';
@@ -31,12 +30,8 @@ export class SearchComponent implements OnInit,OnDestroy {
    User: any;
    user2Id: any;
    conversationId: string='';
+   timestamp: string = '';
 
-   // Expose userService through a public method
-   public getUserService(): UserService {
-     return this.userService;
-   }
- 
 
   constructor(public userService: UserService, 
     private router:Router,
@@ -46,7 +41,6 @@ export class SearchComponent implements OnInit,OnDestroy {
 ) {
 
   
- 
 }
    // Method to handle user logout
    logout() {
@@ -77,16 +71,7 @@ export class SearchComponent implements OnInit,OnDestroy {
   
   }
 
-  //  // Method to handle user selection from the search results
-  // onUserSelected(user: User): void {
-  //   this.selectedUser = user;
-  //   this.convoId = this.messageService.getConversationId(user.userid);
-  //   this.messageService.getMessages(this.convoId)
-  //     .subscribe(messages => this.messages = messages);
-  
-  // }
-
-  onUserSelected(user: User): void {
+ onUserSelected(user: User): void {
     this.selectedUser = user;
     this.convoId = this.messageService.getConversationId(user.userid);
     this.messageService.getMessages(this.convoId)
@@ -124,6 +109,7 @@ export class SearchComponent implements OnInit,OnDestroy {
 
     // Connect to the WebSocket server
      this.websocketService.connect(() => {  
+      
 });
 
       
@@ -144,7 +130,7 @@ sendMessage() {
         sender: this.userService.getLoggedInUserId(),
         content: trimmedMessage, 
         conversationId: conversationId,
-      // timestamp: new Date(),
+        //timestamp: new Date(),
 
       };
 
@@ -169,5 +155,8 @@ sendMessage() {
   }
 }
 
+isDateValid(date: any): boolean {
+  return date instanceof Date && !isNaN(date.getTime());
+}
 
 }

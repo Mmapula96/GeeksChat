@@ -2,6 +2,7 @@
     <div id="container">
       <aside>
         <header>
+    
           <button class="bt1" (click)="logout()"> <mat-icon>logout</mat-icon>Logout </button>
           <button class="bt2" (click)="searchUsers()"><mat-icon>search</mat-icon>Search</button>
           <input type="text" [(ngModel)]="searchName" placeholder="Enter name">
@@ -26,18 +27,24 @@
         <div class="chat-container">
   
   <header *ngIf="selectedUser" class="header-content" >
-    <div class="circle1">{{ selectedUser.username.charAt(0).toUpperCase()}}</div>
-    <div>
+    <!-- <div class="circle1">{{ selectedUser.username.charAt(0).toUpperCase()}}</div> -->
+   <div class="chatchat">
     Chat with {{ selectedUser.username }}
     </div>
+  
   </header>
 
  </div>
  <ul id="chat" class="whatsapp-style">
   <li *ngFor="let message of messages" class="chat-message" [ngClass]="{'sender': message.sender === userService.getLoggedInUserId(), 'receiver': message.sender !== userService.getLoggedInUserId()}">
-    <div class="message-sender">{{ message.sender }}</div>
+    <div class="message-sender">{{ message.sender }}</div> 
     <div class="message-content">{{ message.content }}</div>
-    <!-- <div class="message-time">{{ message.timestamp | date:'medium' }}</div> -->
+
+    <div class="message-time" *ngIf="isDateValid(message.timestamp)">
+      {{ message.timestamp | date:'HH:mm'}}</div>
+
+      
+    
   </li>
 </ul>
 

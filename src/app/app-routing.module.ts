@@ -5,7 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { ChatlistComponent } from './chatlist/chatlist.component';
-import { ChatComponent } from './chat/chat.component';
+
 
 
 
@@ -24,7 +24,7 @@ component:LoginComponent},
 { path: 'search', component: SearchComponent },
   { path: 'search-results', component: SearchResultsComponent, data: { results: [] } },
   { path: 'chatlist', component: ChatlistComponent },
-  {path:'chat',component:ChatComponent},
+
   
 ];
 

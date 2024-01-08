@@ -214,7 +214,7 @@ main footer a{
 	
   }
   
-  .circle,.circle1 {
+  .circle{
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
@@ -227,6 +227,11 @@ main footer a{
 	margin-right: 10px;
 
   }
+.chatchat{
+	position:relative;
+	top:40px;
+	right:48px;
+}
  
   
   .username {
@@ -302,29 +307,41 @@ body {
 	float:right;
   }
   .sender {
-	text-align: right;
 	background-color: #aef7cc;
 	margin-bottom: 10px;
-	border-radius:10px;
-	border: 1px solid black;
+	margin-top:10px;
+	 border-radius:10px; 
+	border-right: 1px solid rgb(175, 174, 174);
   }
+  .sender .message-content {
+	text-align: start;
+	color: #0e0f11;
+	word-wrap: break-word;
+  }
+
   
   .receiver {
 	text-align: left;
 	background-color: #FFFFFF;
    margin-bottom: 10px;
    border-radius:10px;
-	border: 1px solid rgb(0, 0, 0);
-	
+	border: 1px solid rgb(175, 174, 174);
   }
 
   .message-content{
 	color:#0e0f11;
 	word-wrap: break-word;
+	text-align: start;
   }
+  
   .message{
 width:365px;
 height:33px;
+box-sizing: border-box;
+resize: none;
+border:none;
+border-radius: 10px;
+transition: 0.3s ;
   }
   
   

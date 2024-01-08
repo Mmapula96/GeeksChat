@@ -50,6 +50,7 @@ export class SearchResultsComponent implements OnInit{
       },
       (error) => {
         console.error('Error adding contact:', error);
+        alert("you can't add yourself as a contact")
         // Handle error, if needed
       }
     );

@@ -17,40 +17,7 @@ export class MessageService {
   constructor(private userService : UserService,private http:HttpClient){
     
   }
-  // Method to add a message to a conversation
-  getOrCreateConversation(user2Id: number): BehaviorSubject<Message[]> {
-    const user1Id = this.userService.getLoggedInUserId();
-    const convoId = user1Id < user2Id ? `${user1Id}_${user2Id}` : `${user2Id}_${user1Id}`;
 
-    // Check if the conversation already exists
-    if (!this.conversations[convoId]) {
-      // If the conversation doesn't exist, create a new one
-      this.conversations[convoId] = new BehaviorSubject<Message[]>([]);
-    }
-
-    return this.conversations[convoId];
-  }
-
-  // Method to add a message to a conversation or create a new one if it doesn't exist
-  addMessageToConversation(user2Id: number, message: Message): void {
-    const conversation = this.getOrCreateConversation(user2Id);
-
-    // Add the new message to the conversation
-    const currentMessages = conversation.value;
-    const updatedMessages = [...currentMessages, message];
-    conversation.next(updatedMessages);
-// Send the message through WebSocket
- 
-    console.log('sent message',message.content)
-  }
-
-
-  // Method to get conversation messages for a specific conversation
-  getConversationMessages(user2Id: number): Observable<Message[]> {
-    const conversation = this.getOrCreateConversation(user2Id);
-    console.log(conversation);
-    return conversation.asObservable();
-  }
 
   // Method to get a conversation ID based on two user IDs
   getConversationId(user2Id: number): string {
@@ -58,8 +25,8 @@ export class MessageService {
     return user1Id < user2Id ? `${user1Id}_${user2Id}` : `${user2Id}_${user1Id}`;
   }
 
+  //method to get the old messages and the current messages
   getMessages(conversationId: string): Observable<any[]> {
-  
     const url = `${this.apiUrl}/${conversationId}`;
     return this.http.get<any[]>(url);
   

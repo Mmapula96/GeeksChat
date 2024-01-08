@@ -1,6 +1,9 @@
 import { DatePipe } from "@angular/common";
 
 export class Searchuser {
+    userid(userid: any) {
+      throw new Error('Method not implemented.');
+    }
     searchName: string ='';
 
     constructor() {
@@ -20,5 +23,5 @@ export interface Message {
   sender: string;
   content: string;
  conversationId: string;
-  //timestamp:Date,
+//timestamp:Date,
 }

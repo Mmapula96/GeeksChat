@@ -11,22 +11,21 @@ import { UserService } from './user.service';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ChatlistComponent } from './chatlist/chatlist.component';
-import { SearchComponent } from './search/search.component';
-import { ChatComponent } from './chat/chat.component';
 import { WebsocketService } from './websocket.service';
 import { MessageService } from './message.service';
 import { TimestampPipe } from './timestamp.pipe';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    SearchComponent,
     SearchResultsComponent,
     ChatlistComponent,
-    ChatComponent,
     TimestampPipe,
+    SearchComponent
+  
 
   ],
   imports: [

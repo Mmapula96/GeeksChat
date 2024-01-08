@@ -15,6 +15,7 @@ export class UserService {
 
   userId: any;
   baseUrl: any;
+  username: any;
 
   constructor(private http: HttpClient) {}
 
@@ -62,6 +63,9 @@ export class UserService {
     const id = sessionStorage.getItem('loggedInUser');
     return id;
   }
+
+
+
 
 
 

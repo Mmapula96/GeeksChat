@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-import { StompSubscription } from '@stomp/stompjs';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { UserService } from './user.service';
 import { Message, User } from './usersearchfolder/searchuser';
-import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +14,6 @@ export class WebsocketService {
   private messageSubject: Subject<any> = new Subject<any>();
   private isConnected: boolean = false;
   private users : User[] = [];
-
   constructor(private userService:UserService) { 
     
   }
@@ -50,13 +47,14 @@ export class WebsocketService {
     }
   }
 
+  //Method to send messages to the selcted user
   sendMessage(destination: string, message: Message): void {
     this.stompClient.send(destination, {}, JSON.stringify(message));
     this.messageSubject.next(message);
   }
 
 
-
+//message subscription
   subscribeToConversation(conversationId: string): void {
     const conversationTopic = `/topic/messages/${conversationId}`;
     this.stompClient.subscribe(conversationTopic, (message: Stomp.Message) => {
@@ -80,7 +78,8 @@ export class WebsocketService {
     );
     }else{console.log("empty list of users found")}
   }
-  
+ 
+  //method to get the id's for loggedin user and selected user to start conversation
   getConversationId(user2Id: number): string {
     const user1Id = this.userService.getLoggedInUserId();
     return user1Id < user2Id ? `${user1Id}_${user2Id}` : `${user2Id}_${user1Id}`;
