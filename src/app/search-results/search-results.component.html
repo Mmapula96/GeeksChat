@@ -1,5 +1,5 @@
 
-      <div class="search">
+      <!-- <div class="search">
         <ul>
           <li>
            
@@ -11,7 +11,16 @@
           </li>
         </ul>
       </div>
- 
+  -->
+  <div class="search">
+    <ul *ngIf="Searhuser.length > 0">
+      <li *ngFor="let user of Searhuser">
+        <div class="circle">{{ user.username.charAt(0).toUpperCase() }}</div>
+        {{ user.username }}
+        <button (click)="addContact(user)"><mat-icon>person</mat-icon>Add to Chat</button>
+      </li>
+    </ul>
+  </div>
     
 
 

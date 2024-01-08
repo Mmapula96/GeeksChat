@@ -56,7 +56,7 @@ export class SearchComponent implements OnInit,OnDestroy {
       this.userService.searchUsersByUsername(this.searchName).subscribe(
         // Callback function executed on successful response
         (data) => {
-          console.log("this is the user: ", data);//it shows the name i searched
+          console.log("these are the users: ", this.searchName);//it shows the name i searched
           // Store fetched users in the 'users' array
           this.users = data;
           // Open a dialog to display search results
@@ -86,10 +86,6 @@ export class SearchComponent implements OnInit,OnDestroy {
       });
   }
 
-
-
-
-
   // Method to open a dialog to display search results
   openDialog(users: any): void {
     const dialogRef = this.dialog.open(SearchResultsComponent, {  
@@ -99,6 +95,7 @@ export class SearchComponent implements OnInit,OnDestroy {
     });
   
   }
+
 
   ngOnDestroy(): void {
     // Implement any cleanup logic if needed
@@ -130,7 +127,7 @@ sendMessage() {
         sender: this.userService.getLoggedInUserId(),
         content: trimmedMessage, 
         conversationId: conversationId,
-        //timestamp: new Date(),
+        // timestamp: new Date(),
 
       };
 

@@ -1,6 +1,7 @@
 import { DatePipe } from "@angular/common";
 
 export class Searchuser {
+    username: any;
     userid(userid: any) {
       throw new Error('Method not implemented.');
     }

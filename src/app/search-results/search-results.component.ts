@@ -13,22 +13,25 @@ import { User } from '../usersearchfolder/searchuser';
 export class SearchResultsComponent implements OnInit{
 
 // Property to hold the user data received from the search component
-  users: User;
+  // users: User;
   dialogRef: any;
-  ContactService: any;
-  Searhuser: any[]=[];
+  // Searhuser: any[]=[];
   selectedUser: string = '';
- 
+  users: User[];
+  
+  Searhuser: User[] = [];
  
     
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private router:Router,private userService : UserService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private userService : UserService) {
     // 'data' will now contain the information passed to the dialog
-    this.users = data[0];   
+    this.users = data;
+    this.Searhuser = this.users;  
+
   }
 
   
   ngOnInit(): void {
-    console.log(this.users);
+    console.log(this.data);
 
   }
  
