@@ -1,14 +1,25 @@
 
-<div *ngFor="let user of Searchuser" class="user-circle" (click)="selectUser(user)">
-
- 
+<!-- <div *ngFor="let user of Searchuser" class="user-circle" (click)="selectUser(user)">
   <div class="circle">{{ user.username.charAt(0).toUpperCase() }}</div>
   <div>{{ user.username }}
-  <p>How are you?</p>
+    <p *ngIf="lastMessages && lastMessages[user.userid]">
+      {{ lastMessages[user.userid].content }}
+      <span class="message-timestamp">{{ lastMessages[user.userid].timestamp | date:'medium' }}</span>
+    </p>
+    <p *ngIf="lastMessages || lastMessages[user.userid]">No messages</p>
   </div>
+</div> -->
 
+<div *ngFor="let user of Searchuser" class="user-circle" (click)="selectUser(user)">
+  <div class="circle">{{ user.username.charAt(0).toUpperCase() }}</div>
+  <div>{{ user.username }}
+    <p *ngIf="lastMessages && lastMessages[user.userid]">
+      {{ lastMessages[user.userid].content }}
+      <!-- <span class="message-timestamp">{{ lastMessages[user.userid].timestamp | date:'medium' }}</span> -->
+    </p>
+    <p *ngIf="lastMessages || lastMessages[user.userid]"></p>
+  </div>
 </div>
-
 
 
 

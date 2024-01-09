@@ -49,9 +49,12 @@ export class WebsocketService {
 
   //Method to send messages to the selcted user
   sendMessage(destination: string, message: Message): void {
+    // console.log(message.timestamp);
     this.stompClient.send(destination, {}, JSON.stringify(message));
     this.messageSubject.next(message);
   }
+
+  
 
 
 //message subscription

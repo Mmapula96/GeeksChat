@@ -13,7 +13,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ChatlistComponent } from './chatlist/chatlist.component';
 import { WebsocketService } from './websocket.service';
 import { MessageService } from './message.service';
-import { TimestampPipe } from './timestamp.pipe';
 import { SearchComponent } from './search/search.component';
 
 @NgModule({
@@ -23,7 +22,6 @@ import { SearchComponent } from './search/search.component';
     LoginComponent,
     SearchResultsComponent,
     ChatlistComponent,
-    TimestampPipe,
     SearchComponent
   
 

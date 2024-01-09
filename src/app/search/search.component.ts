@@ -6,6 +6,9 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
 import { Message, User } from '../usersearchfolder/searchuser';
 import { WebsocketService } from '../websocket.service';
 import { MessageService } from '../message.service';
+import { CurrencyPipe, DatePipe } from '@angular/common';
+import { timestamp } from 'rxjs';
+import { TimestampPipe } from '../timestamp.pipe';
 
 
 @Component({
@@ -37,7 +40,8 @@ export class SearchComponent implements OnInit,OnDestroy {
     private router:Router,
     private dialog:MatDialog,
     private websocketService:WebsocketService,
-    private messageService:MessageService
+    private messageService:MessageService,
+
 ) {
 
   
@@ -71,20 +75,34 @@ export class SearchComponent implements OnInit,OnDestroy {
   
   }
 
- onUserSelected(user: User): void {
-    this.selectedUser = user;
-    this.convoId = this.messageService.getConversationId(user.userid);
-    this.messageService.getMessages(this.convoId)
-      .subscribe(messages => {
-        this.messages = messages.map(message => {
-          // Convert the timestamp to a Date object for received messages
-          if (message.sender !== this.userService.getLoggedInUserId()) {
-            return { ...message, timestamp: new Date(message.timestamp) };
-          }
-          return message;
-        });
-      });
-  }
+//  onUserSelected(user: User): void {
+//     this.selectedUser = user;
+//     this.convoId = this.messageService.getConversationId(user.userid);
+//     this.messageService.getMessages(this.convoId)
+//       .subscribe(messages => {
+//         this.messages = messages.map(message => {
+//           // Convert the timestamp to a Date object for received messages
+//           if (message.sender !== this.userService.getLoggedInUserId()) {
+//             return { ...message, timestamp: new Date(message.timestamp) };
+//           }
+//           return message;
+//         });
+//       });
+//   }
+
+onUserSelected(user: User): void {
+  this.selectedUser = user;
+  this.convoId = this.messageService.getConversationId(user.userid);
+
+  this.messageService.getMessages(this.convoId).subscribe(messages => {
+    this.messages = messages.map(message => {
+    return message;
+       
+    });
+  });
+
+}
+
 
   // Method to open a dialog to display search results
   openDialog(users: any): void {
@@ -127,8 +145,9 @@ sendMessage() {
         sender: this.userService.getLoggedInUserId(),
         content: trimmedMessage, 
         conversationId: conversationId,
-        // timestamp: new Date(),
-
+      //  timestamp:new Date(),
+      
+       
       };
 
       // Add the new message to the UI immediately
@@ -144,16 +163,19 @@ sendMessage() {
     } else {
       // Handle the case when the message content is empty
       console.error('Cannot send an empty message.');
+      alert("Cannot send an empty message ")
       
     }
   } else {
     // Handle the case when no user is selected
     console.error('No user selected to send a message to.');
+    alert("No user Selected to send message to")
   }
 }
 
 isDateValid(date: any): boolean {
   return date instanceof Date && !isNaN(date.getTime());
 }
+
 
 }

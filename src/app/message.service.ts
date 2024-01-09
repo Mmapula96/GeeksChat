@@ -1,17 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, filter, merge } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, filter, merge, pipe, tap } from 'rxjs';
 import { Message } from './usersearchfolder/searchuser';
 import { UserService } from './user.service';
-import { WebsocketService } from './websocket.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
   
-  private conversations: { [key: string]: BehaviorSubject<Message[]> } = {};
+  // private conversations: { [key: string]: BehaviorSubject<Message[]> } = {};
   private apiUrl = 'http://localhost:8080/api/messages';
+
 
 
   constructor(private userService : UserService,private http:HttpClient){
@@ -30,6 +30,13 @@ export class MessageService {
     const url = `${this.apiUrl}/${conversationId}`;
     return this.http.get<any[]>(url);
   
+  }
+
+  getLastMessage(conversationId: string): Observable<Message> {
+    return this.http.get<Message>(`${this.apiUrl}/last/${conversationId}`)
+      .pipe(
+        tap(data => console.log('Received last message:', data))
+      );
   }
   
   
