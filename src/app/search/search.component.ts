@@ -8,7 +8,8 @@ import { WebsocketService } from '../websocket.service';
 import { MessageService } from '../message.service';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { timestamp } from 'rxjs';
-import { TimestampPipe } from '../timestamp.pipe';
+import { ThisReceiver } from '@angular/compiler';
+// import { TimestampPipe } from '../timestamp.pipe';
 
 
 @Component({
@@ -81,28 +82,27 @@ export class SearchComponent implements OnInit,OnDestroy {
 //     this.messageService.getMessages(this.convoId)
 //       .subscribe(messages => {
 //         this.messages = messages.map(message => {
-//           // Convert the timestamp to a Date object for received messages
-//           if (message.sender !== this.userService.getLoggedInUserId()) {
-//             return { ...message, timestamp: new Date(message.timestamp) };
-//           }
 //           return message;
-//         });
+       
 //       });
-//   }
+//   });
+// }
 
 onUserSelected(user: User): void {
   this.selectedUser = user;
   this.convoId = this.messageService.getConversationId(user.userid);
-
-  this.messageService.getMessages(this.convoId).subscribe(messages => {
-    this.messages = messages.map(message => {
-    return message;
-       
+  
+  this.messageService.getMessages(this.convoId)
+    .subscribe(messages => {
+      this.messages = messages.map(message => {
+        return {
+          sender: message.sender,
+          content: message.content,
+          timestamp: message.timestamp,
+        };
+      });
     });
-  });
-
 }
-
 
   // Method to open a dialog to display search results
   openDialog(users: any): void {
@@ -127,6 +127,7 @@ onUserSelected(user: User): void {
       
 });
 
+
       
     }
 
@@ -145,10 +146,11 @@ sendMessage() {
         sender: this.userService.getLoggedInUserId(),
         content: trimmedMessage, 
         conversationId: conversationId,
-      //  timestamp:new Date(),
-      
+        timestamp: new Date(),
        
       };
+
+    
 
       // Add the new message to the UI immediately
       this.messages.push(newMessage);
@@ -175,6 +177,17 @@ sendMessage() {
 
 isDateValid(date: any): boolean {
   return date instanceof Date && !isNaN(date.getTime());
+}
+
+getMessages(conversationId: string): void {
+  this.messageService.getMessages(conversationId).subscribe(
+    (messages) => {
+      this.messages = messages;
+    },
+    (error) => {
+      console.error('Error fetching messages:', error);
+    }
+  );
 }
 
 

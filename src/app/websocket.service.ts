@@ -54,9 +54,6 @@ export class WebsocketService {
     this.messageSubject.next(message);
   }
 
-  
-
-
 //message subscription
   subscribeToConversation(conversationId: string): void {
     const conversationTopic = `/topic/messages/${conversationId}`;

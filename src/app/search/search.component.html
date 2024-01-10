@@ -1,63 +1,61 @@
+<div id="container">
+  <aside>
+    <header>
+      <button class="bt1" (click)="logout()">
+        <mat-icon>logout</mat-icon>Logout
+      </button>
+      <button class="bt2" (click)="searchUsers()">
+        <mat-icon>search</mat-icon>Search
+      </button>
+      <input type="text" [(ngModel)]="searchName" placeholder="Enter name....">
 
-    <div id="container">
-      <aside>
-        <header>
-    
-          <button class="bt1" (click)="logout()"> <mat-icon>logout</mat-icon>Logout </button>
-          <button class="bt2" (click)="searchUsers()"><mat-icon>search</mat-icon>Search</button>
-          <input type="text" [(ngModel)]="searchName" placeholder="Enter name">
-        
+      <div *ngFor="let user of users">
+        {{ user.name }}
+      </div>
+      <div *ngFor="let user of Searchuser">
+        {{ user.username }}
+      </div>
+    </header>
 
-          <div *ngFor="let user of users">
-            
-               {{ user.name }}
-       
-            </div> 
-            <div *ngFor="let user of Searchuser">
-              {{ user.username }}
-            </div>
-                  </header>
-
-                 <div>
-
-                  <app-chatlist (userSelected)="onUserSelected($event)" style="cursor:pointer" ></app-chatlist>
- </div>
-        </aside>
-      <main>
-        <div class="chat-container">
-  
-  <header *ngIf="selectedUser" class="header-content" >
-    <!-- <div class="circle1">{{ selectedUser.username.charAt(0).toUpperCase()}}</div> -->
-   <div class="chatchat">
-    Chat with {{ selectedUser.username }}
+    <div>
+      <app-chatlist (userSelected)="onUserSelected($event)" style="cursor:pointer"></app-chatlist>
     </div>
-  
-  </header>
+  </aside>
 
- </div>
- <ul id="chat" class="whatsapp-style">
-  <li *ngFor="let message of messages" class="chat-message" [ngClass]="{'sender': message.sender === userService.getLoggedInUserId(), 'receiver': message.sender !== userService.getLoggedInUserId()}">
-    <div class="message-sender">{{ message.sender }}</div> 
-  
-    <div class="message-content">{{ message.content }}</div>
+  <main>
+    <div>
+      <header *ngIf="selectedUser">
+   
+        <div class="chatchat">
+          <span class="circle">{{ selectedUser.username.charAt(0).toUpperCase() }}</span>
+          Chat with {{ selectedUser.username }}
+        </div>
+        <div class="star-icon"><mat-icon>favorite</mat-icon></div>
+      </header>
+    </div>
+
+<ul id="chat">
+  <li *ngFor="let message of messages" class="chat-message"
+    [ngClass]="{'sender': message.sender === userService.getLoggedInUserId(), 'receiver': message.sender !== userService.getLoggedInUserId()}">
+
+    <div class="message-sender">{{ message.sender }}</div>
+
     <div class="message-time" *ngIf="isDateValid(message.timestamp)">
-      {{ message.timestamp | date:'shortTime'}}</div>
+      {{ message.timestamp | date: 'shortTime' }}
+    </div>
 
-
+    <div class="message-content">{{ message.content }}</div>
   </li>
 </ul>
 
-<footer>
-  <div>
-    <input class="message" [(ngModel)]="message" placeholder="Type your message..." />
-    <button class="send" (click)="sendMessage()"><mat-icon>send</mat-icon>Send</button>
-  </div>
-</footer>
 
-
-      
-
-
-      
-
-    
+    <footer>
+      <div>
+        <input class="message" [(ngModel)]="message" placeholder="Type your message......." />
+        <button class="send" (click)="sendMessage()">
+          <mat-icon>send</mat-icon>Send
+        </button>
+      </div>
+    </footer>
+  </main>
+</div>

@@ -6,14 +6,33 @@ body{
 	font-family:Arial;
 }
 #container{
-	width:750px;
+	width:100%;
 	height:800px;
-	background:#eff3f7;
+	background:#f2f4f7;
 	margin:0 auto;
 	font-size:0;
 	border-radius:5px;
 	overflow:hidden;
 }
+
+.chatchat {
+	display: flex;
+	align-items: center;
+  }
+  
+  .circle {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #6e7070;
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	margin-right: 10px;
+	font-size: 15px; /* Adjust the font size as needed */
+  }
 aside{
 	width:260px;
 	height:800px;
@@ -23,11 +42,12 @@ aside{
 	vertical-align:top;
 }
 main{
-	width:490px;
+
 	height:800px;
 	display:inline-block;
 	font-size:15px;
 	vertical-align:top;
+	width: calc(100% - 260px);
 }
 
 aside header{
@@ -55,7 +75,7 @@ aside ul{
 	padding-left:0;
 	margin:0;
 	list-style-type:none;
-	overflow-y:scroll;
+	/* overflow-y:scroll; */
 	height:690px;
 }
 aside li{
@@ -94,6 +114,7 @@ aside li h3{
 main header{
 	height:110px;
 	padding:30px 20px 30px 40px;
+	width:100%;
 }
 main header > *{
 	display:inline-block;
@@ -120,71 +141,26 @@ main header h3{
 	color:#7e818a;
 }
 
-#chat{
-	padding-left:0;
-	margin:0;
-	list-style-type:none;
-	overflow-y:scroll;
-	height:535px;
-	border-top:2px solid #fff;
-	border-bottom:2px solid #fff;
-}
-#chat li{
-	padding:10px 30px;
-}
-#chat h2,#chat h3{
-	display:inline-block;
-	font-size:13px;
-	font-weight:normal;
-}
-#chat h3{
-	color:#bbb;
-}
-#chat .entete{
-	margin-bottom:5px;
-}
-#chat .message{
-	padding:20px;
-	color:#fff;
-	line-height:25px;
-	max-width:90%;
-	display:inline-block;
-	text-align:left;
-	border-radius:5px;
-}
-#chat .me{
-	text-align:right;
-}
-#chat .you .message{
-	background-color:#58b666;
-}
-#chat .me .message{
-	background-color:#6fbced;
-}
-#chat .triangle{
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 0 10px 10px 10px;
-}
-#chat .you .triangle{
-		border-color: transparent transparent #58b666 transparent;
-		margin-left:15px;
-}
-#chat .me .triangle{
-		border-color: transparent transparent #6fbced transparent;
-		margin-left:375px;
-}
+#chat {
+	margin: 0;
+	list-style-type: none;
+	overflow-y: scroll;
+	height: calc(100% - 190px);
+	width:100%;
+	background-color: rgb(238, 234, 243);
+  }
+
+
 
 main footer{
-	height:155px;
+
 	padding:20px 30px 10px 20px;
 }
 main footer textarea{
 	resize:none;
 	border:none;
 	display:block;
-	width:100%;
+	width:min-content;
 	height:80px;
 	border-radius:3px;
 	padding:20px;
@@ -228,9 +204,9 @@ main footer a{
 
   }
 .chatchat{
-	position:relative;
-	top:40px;
-	right:48px;
+	text-align:center;
+	position: absolute;
+	right:center;
 }
  
   
@@ -241,7 +217,7 @@ main footer a{
 
   
   button:hover {
-	background-color: #2349c8; 
+	background-color: #757677; 
   }
 
   .bt1{
@@ -250,6 +226,7 @@ main footer a{
 	font-size:smaller;
 	float:right;
 	border:none;
+	border-radius: 8px;
   }
 
   .bt2{
@@ -258,6 +235,7 @@ main footer a{
 	font-size:smaller;
 	border:none;
 	margin-bottom: 5px;
+	border-radius: 8px;
   }
 
 body {
@@ -289,8 +267,7 @@ body {
 	padding: 0;
 	margin: 0;
   }
-  
- 
+
   
   /* Style for the input area and send button */
   .footer {
@@ -305,18 +282,32 @@ body {
 
   .send{
 	float:right;
+	border-radius: 10px;
+	background-color: #aef7cc;
   }
   .sender {
 	background-color: #aef7cc;
 	margin-bottom: 10px;
 	margin-top:10px;
 	 border-radius:10px; 
-	border-right: 1px solid rgb(175, 174, 174);
+	border: 1px solid rgb(175, 174, 174);
+	text-align: start;
+	/* position:relative;
+	left:400px; */
+width:min-content;
+max-width: 100%;
+margin: 10px;
+width:fit-content;
+align-self: flex-end;
+
   }
-  .sender .message-content {
+  .message-content {
 	text-align: start;
 	color: #0e0f11;
 	word-wrap: break-word;
+	padding: 10px;
+	border-radius: 5px; 
+
   }
 
   
@@ -325,24 +316,29 @@ body {
 	background-color: #FFFFFF;
    margin-bottom: 10px;
    border-radius:10px;
-	border: 1px solid rgb(175, 174, 174);
-  }
+   width:min-content;
+   max-width: 100%;
+   margin: 10px;
+   width:fit-content;
 
-  .message-content{
-	color:#0e0f11;
-	word-wrap: break-word;
-	text-align: start;
   }
   
   .message{
-width:365px;
+width:800px;
 height:33px;
 box-sizing: border-box;
 resize: none;
-border:none;
+border:1px solid rgb(39, 207, 109);
 border-radius: 10px;
-transition: 0.3s ;
+
   }
+  .star-icon {
+	position: relative;
+	top: 10px;
+left:800px;
+	color: rgb(15, 224, 120); 
+	cursor: pointer; 
+	font-size: 30px;}
   
   
   
