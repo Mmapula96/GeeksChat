@@ -1,6 +1,9 @@
 <div id="container">
   <aside>
     <header>
+      <div class="loggedin-username">
+        Logged in as: {{ loggedInUsername}}
+      </div>
       <button class="bt1" (click)="logout()">
         <mat-icon>logout</mat-icon>Logout
       </button>
@@ -33,20 +36,22 @@
         <div class="star-icon"><mat-icon>favorite</mat-icon></div>
       </header>
     </div>
-
-<ul id="chat">
-  <li *ngFor="let message of messages" class="chat-message"
-    [ngClass]="{'sender': message.sender === userService.getLoggedInUserId(), 'receiver': message.sender !== userService.getLoggedInUserId()}">
-
-    <div class="message-sender">{{ message.sender }}</div>
-
-    <div class="message-time" *ngIf="isDateValid(message.timestamp)">
-      {{ message.timestamp | date: 'shortTime' }}
-    </div>
-
-    <div class="message-content">{{ message.content }}</div>
-  </li>
-</ul>
+    <ul id="chat" class="message-container">
+      <ng-container *ngFor="let message of messages">
+        <li *ngIf="message.sender !== userService.getLoggedInUserId()" class="receiver">
+          <div class="message-time" *ngIf="isDateValid(message.timestamp)">
+            {{ message.timestamp | date: 'shortTime' }}
+          </div>
+          <div class="message-content">{{ message.content }}</div>
+        </li>
+        <li *ngIf="message.sender === userService.getLoggedInUserId()" class="sender">
+          <div class="message-time" *ngIf="isDateValid(message.timestamp)">
+            {{ message.timestamp | date: 'shortTime' }}
+          </div>
+          <div class="message-content">{{ message.content }}</div>
+        </li>
+      </ng-container>
+    </ul>
 
 
     <footer>

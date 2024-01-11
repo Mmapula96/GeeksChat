@@ -10,6 +10,7 @@ import { ChatlistComponent } from './chatlist/chatlist.component';
 
 
 
+
 const routes: Routes = [
   {path:'login',
 component:LoginComponent},
@@ -24,6 +25,7 @@ component:LoginComponent},
 { path: 'search', component: SearchComponent },
   { path: 'search-results', component: SearchResultsComponent, data: { results: [] } },
   { path: 'chatlist', component: ChatlistComponent },
+
 
   
 ];

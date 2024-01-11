@@ -40,6 +40,8 @@ aside{
 	display:inline-block;
 	font-size:15px;
 	vertical-align:top;
+	overflow: scroll;
+	
 }
 main{
 
@@ -75,7 +77,7 @@ aside ul{
 	padding-left:0;
 	margin:0;
 	list-style-type:none;
-	/* overflow-y:scroll; */
+	overflow-y:scroll; 
 	height:690px;
 }
 aside li{
@@ -285,21 +287,17 @@ body {
 	border-radius: 10px;
 	background-color: #aef7cc;
   }
-  .sender {
+  /* .sender {
 	background-color: #aef7cc;
-	margin-bottom: 10px;
-	margin-top:10px;
-	 border-radius:10px; 
+	margin-top: 10px;
+	border-radius: 10px;
 	border: 1px solid rgb(175, 174, 174);
 	text-align: start;
-	/* position:relative;
-	left:400px; */
-width:min-content;
-max-width: 100%;
-margin: 10px;
-width:fit-content;
-align-self: flex-end;
-
+	width: min-content;
+	max-width: 100%;
+	width: fit-content;
+	float:right;
+	clear: both;
   }
   .message-content {
 	text-align: start;
@@ -307,21 +305,20 @@ align-self: flex-end;
 	word-wrap: break-word;
 	padding: 10px;
 	border-radius: 5px; 
-
+	flex-direction: column-reverse;
   }
 
   
   .receiver {
 	text-align: left;
 	background-color: #FFFFFF;
-   margin-bottom: 10px;
-   border-radius:10px;
-   width:min-content;
-   max-width: 100%;
-   margin: 10px;
-   width:fit-content;
-
-  }
+	margin-top: 10px;
+	border-radius: 10px;
+	width: min-content;
+	max-width: 100%;
+	margin: 10px;
+	width: fit-content
+  } */
   
   .message{
 width:800px;
@@ -335,10 +332,54 @@ border-radius: 10px;
   .star-icon {
 	position: relative;
 	top: 10px;
-left:800px;
+    left:800px;
 	color: rgb(15, 224, 120); 
 	cursor: pointer; 
 	font-size: 30px;}
   
-  
-  
+	.message-container {
+		display: flex;
+		flex-direction: column;
+	  }
+	  
+	  .sender {
+		background-color: #aef7cc;
+		margin-top: 10px;
+		border-radius: 10px;
+		border: 1px solid rgb(175, 174, 174);
+		text-align: start;
+		width: min-content;
+		max-width: 100%;
+		width: fit-content;
+		margin-bottom: 10px;
+		align-self: flex-end; 
+	  }
+	  
+	  .receiver {
+		background-color: #f3faf6; 
+		margin-top: 10px;
+		border-radius: 10px;
+		border: 1px solid rgb(175, 174, 174);
+		text-align: start;
+		width: min-content;
+		max-width: 100%;
+		width: fit-content;
+		margin-bottom: 10px;
+	  }
+	  
+	  .message-content {
+		text-align: start;
+		color: #0e0f11;
+		word-wrap: break-word;
+		padding: 10px;
+		border-radius: 5px;
+	  }
+	  .loggedin-username {
+		font-size: 16px;
+		color: #333; 
+		background-color: #f0f0f0; 
+		padding: 10px; 
+		border: 1px solid #ccc; 
+		border-radius: 5px; 
+		margin-bottom: 10px; 
+	  }

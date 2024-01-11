@@ -23,17 +23,21 @@
     margin-bottom: 10px;
   }
   
+ 
   .circle {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #696a6b; 
-    color: #363636; 
+    background-color: #6e7070;
+    color: rgb(39, 39, 39);
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin-right: 15px;
-  }
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 10px;
+  
+  
+    }
   
   button {
     background-color: #dde6e1;
@@ -41,7 +45,8 @@
     border: none;
     cursor: pointer;
     margin-left: 80px;
-
+border-radius: 8px;
+float:right;
 }
 
 button:hover {

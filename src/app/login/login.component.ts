@@ -15,6 +15,7 @@ export class LoginComponent{
   email: string = "";
   password: string = "";
   loggedInUserId: any;
+  loggedInUsername: any;
 
 // Inject/add necessary services (Router, HttpClient, UserService)
   constructor(private router: Router, private http: HttpClient, private userService: UserService) {}
@@ -47,6 +48,15 @@ this.http.post("http://localhost:8080/api/v1/user/login", bodyData)
     this.userService.setLoggedInUserId(this.loggedInUserId);
 // Store the logged-in user ID in sessionstorage for session persistence
     sessionStorage.setItem('loggedInUser', JSON.stringify(resultData.user.userid));
+
+    // Set the logged-in username
+this.loggedInUsername = resultData.user.username;
+
+this.userService.setLoggedInUsername(this.loggedInUsername);
+//store the logged in username in sessionStorage for session persistence
+
+sessionStorage.setItem('LOGGEDUSERNAME',JSON.stringify(this.loggedInUsername));
+
 
     // Navigate to the '/search' route upon successful login
     this.router.navigateByUrl("/search");

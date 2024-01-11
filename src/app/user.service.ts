@@ -8,6 +8,7 @@ import { Searchuser } from './usersearchfolder/searchuser';
 })
 export class UserService {
 
+
   
   private apiUrl = 'http://localhost:8080/api/v1/user'; 
   private selectedUserIdSource = new BehaviorSubject<number | null>(null);
@@ -16,8 +17,11 @@ export class UserService {
   userId: any;
   baseUrl: any;
   username: any;
+  loggedInUsername: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+ 
+  }
 
   getUsers(): Observable<Searchuser[]> {
     return this.http.get<Searchuser[]>(`${this.apiUrl}/all`);
@@ -60,4 +64,16 @@ export class UserService {
   selectUser(userId: number): void {
     this.selectedUserIdSource.next(userId);
   }
+
+  setLoggedInUsername(loggedInUsername:any)
+{
+  this.loggedInUsername =loggedInUsername;
+}
+
+getLoggedInUsername():any{
+  const loggedin = sessionStorage.getItem('LOGGEDUSERNAME');
+  if(loggedin)
+  return JSON.parse(loggedin);
+}
+
 }

@@ -15,6 +15,7 @@ import { WebsocketService } from './websocket.service';
 import { MessageService } from './message.service';
 import { SearchComponent } from './search/search.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { SearchComponent } from './search/search.component';
     LoginComponent,
     SearchResultsComponent,
     ChatlistComponent,
-    SearchComponent
+    SearchComponent,
+  
   
 
   ],

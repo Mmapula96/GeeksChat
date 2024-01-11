@@ -93,26 +93,26 @@ private getChatList(userid: any) {
   fetchLastMessages(): void {
     // Fetch and store the last message for each user
     this.Searchuser.forEach((user: any) => {
-      const conversationId = this.messageService.getConversationId(user.userid);
+      const convoId = this.messageService.getConversationId(user.userid);
       
-      this.messageService.getLastMessage(conversationId).subscribe(
+      this.messageService.getLastMessage(convoId).subscribe(
         (lastMessage) => {
-          console.log('Conversation ID:', conversationId);
+          console.log('Conversation ID:', convoId);
           console.log('Last Message:', lastMessage);
   
           // Check if lastMessage is not null or undefined before assignment
           if (lastMessage) {
             this.lastMessages[user.userid] = lastMessage;
           } else {
-            console.warn('No last message found for conversation ID:', conversationId);
+            console.warn('No last message found for conversation ID:', convoId);
           }
         },
         (error) => {
-          console.error('Error fetching last message for conversation ID:', conversationId, error);
+          console.error('Error fetching last message for conversation ID:', convoId, error);
         },
         () => {
           // Add this block to log completion of the observable
-          console.log('Observable completed for conversation ID:', conversationId);
+          console.log('Observable completed for conversation ID:', convoId);
           console.log('lastMessages:', this.lastMessages);
         }
       );

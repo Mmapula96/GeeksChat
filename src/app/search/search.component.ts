@@ -9,7 +9,7 @@ import { MessageService } from '../message.service';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { timestamp } from 'rxjs';
 import { ThisReceiver } from '@angular/compiler';
-// import { TimestampPipe } from '../timestamp.pipe';
+
 
 
 @Component({
@@ -35,6 +35,7 @@ export class SearchComponent implements OnInit,OnDestroy {
    user2Id: any;
    conversationId: string='';
    timestamp: string = '';
+loggedInUsername: any;
 
 
   constructor(public userService: UserService, 
@@ -44,6 +45,7 @@ export class SearchComponent implements OnInit,OnDestroy {
     private messageService:MessageService,
 
 ) {
+  
 
   
 }
@@ -76,17 +78,6 @@ export class SearchComponent implements OnInit,OnDestroy {
   
   }
 
-//  onUserSelected(user: User): void {
-//     this.selectedUser = user;
-//     this.convoId = this.messageService.getConversationId(user.userid);
-//     this.messageService.getMessages(this.convoId)
-//       .subscribe(messages => {
-//         this.messages = messages.map(message => {
-//           return message;
-       
-//       });
-//   });
-// }
 
 onUserSelected(user: User): void {
   this.selectedUser = user;
@@ -126,8 +117,9 @@ onUserSelected(user: User): void {
      this.websocketService.connect(() => {  
       
 });
-
-
+ this.loggedInUsername = this.userService.getLoggedInUsername()
+ // Add debug logging
+ console.log('Debug: username....', this.loggedInUsername);
       
     }
 
