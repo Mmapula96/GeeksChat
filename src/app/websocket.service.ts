@@ -51,7 +51,7 @@ export class WebsocketService {
   sendMessage(destination: string, message: Message): void {
     // console.log(message.timestamp);
     this.stompClient.send(destination, {}, JSON.stringify(message));
-    this.messageSubject.next(message);
+   // this.messageSubject.next(message);
   }
 
 //message subscription
@@ -59,7 +59,7 @@ export class WebsocketService {
     const conversationTopic = `/topic/messages/${conversationId}`;
     this.stompClient.subscribe(conversationTopic, (message: Stomp.Message) => {
       // Handle the received message
-      this.messageSubject.next(message.body);
+     this.messageSubject.next(message.body);
       const newMessage = message.body;
     
       console.log('Received message:', newMessage);

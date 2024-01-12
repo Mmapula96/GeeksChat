@@ -65,7 +65,7 @@ private getChatList(userid: any) {
         console.log('Chat list updated:', this.userid);
 
         // Fetch last messages after updating the chat list
-        this.fetchLastMessages();
+        this.getLastMessages();
       } else {
         console.warn('Received empty or invalid chat list for userId:', userid);
       }
@@ -90,7 +90,7 @@ private getChatList(userid: any) {
     this.destroy$.next();
     this.destroy$.complete();
   }
-  fetchLastMessages(): void {
+  getLastMessages(): void {
     // Fetch and store the last message for each user
     this.Searchuser.forEach((user: any) => {
       const convoId = this.messageService.getConversationId(user.userid);

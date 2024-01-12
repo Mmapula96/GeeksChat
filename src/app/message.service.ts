@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, filter, merge, pipe, tap } from 'rxjs';
+import {  Observable,  tap } from 'rxjs';
 import { Message } from './usersearchfolder/searchuser';
 import { UserService } from './user.service';
 
@@ -8,6 +8,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class MessageService {
+ 
   
   // private conversations: { [key: string]: BehaviorSubject<Message[]> } = {};
   private apiUrl = 'http://localhost:8080/api/messages';
@@ -38,6 +39,8 @@ export class MessageService {
         tap(data => console.log('Received last message:', data))
       );
   }
+
+  
   
   
 }

@@ -2,18 +2,19 @@
 
 <div *ngFor="let user of Searchuser" class="user-circle" (click)="selectUser(user)">
   <div class="circle">{{ user.username.charAt(0).toUpperCase() }}</div>
-  <div>{{ user.username }}
+  <div class="message-content">
+  <div>{{ user.username }}</div>
     <p *ngIf="lastMessages && lastMessages[user.userid]">
       <!-- {{ lastMessages[user.userid].content}} -->
       {{ lastMessages[user.userid].content.slice(0, 30) + (lastMessages[user.userid].content.length > 30 ? '...' : '') }}
-      <span class="message-timestamp">{{ lastMessages[user.userid].timestamp | date:'medium' }}</span>
+      <span class="message-timestamp">
+        {{ lastMessages[user.userid].timestamp | date:'shortTime':'UTC' }}
+      </span>
     </p>
     <p *ngIf="lastMessages || lastMessages[user.userid]"></p>
   </div>
 </div>
-<!-- <div  class="update-button">
-<button (click)="updateMessages()">Update</button>
-</div> -->
+
 
 
 

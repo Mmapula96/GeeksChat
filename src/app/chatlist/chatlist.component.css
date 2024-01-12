@@ -24,16 +24,15 @@
   .username {
 	font-size: 16px; 
   }
-  .update-button {
-	border: none;
-	color: white;
-	padding: 10px 20px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	cursor: pointer;
-	border-radius: 5px;
+  .message-timestamp {
+	float: right;
+	color: #0a0a0a;
+  }
 
+  
+  .message-content {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	flex-grow:1;
   }

@@ -12,10 +12,12 @@ body{
     text-align: center;
     display: flex;
     flex-direction: column;
-position:fixed;
+    position:fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+   
+    
 }
 
 
@@ -25,8 +27,15 @@ position:fixed;
     margin-bottom: 20px;
 }
 
-h1,h2 {
+h2 {
     text-align: center;
+    font-size:30px;
+    position:fixed;
+    top:60px;
+}
+h1{
+    text-align: center;   
+    font-size:30px; 
 }
 
 form {
@@ -62,7 +71,7 @@ button:hover {
 .auth-link {
     margin-top: 10px;
 }
-/* Your existing CSS styles */
+
 
 /* Styling for the images */
 .auth-image {
@@ -73,7 +82,7 @@ button:hover {
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
-/* Your existing CSS styles */
+
 
 /* Styling for the signup link */
 .auth-link a {
@@ -119,10 +128,14 @@ button:hover {
     color: #ccc;
 }
 
-/* Rest of your CSS */
-/* Default styles for all screen sizes */
+
 body {
     font-size: 16px;
+    background-image: url('/assets/photo.jpg');
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   }
   
   /* Styles for screens smaller than 600px (e.g., mobile phones) */
@@ -133,9 +146,9 @@ body {
   }
   
   /* Styles for screens between 601px and 1024px (e.g., tablets) */
-  @media (min-width: 601px) and (max-width: 1024px) {
+  @media screen and (max-width: 600px) {
     body {
-      font-size: 18px;
+        font-size: 16px;
     }
   }
   

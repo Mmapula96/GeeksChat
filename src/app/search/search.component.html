@@ -36,24 +36,26 @@
         <div class="star-icon"><mat-icon>favorite</mat-icon></div>
       </header>
     </div>
+    
     <ul id="chat" class="message-container">
       <ng-container *ngFor="let message of messages">
         <li *ngIf="message.sender !== userService.getLoggedInUserId()" class="receiver">
-          <div class="message-time" *ngIf="isDateValid(message.timestamp)">
-            {{ message.timestamp | date: 'shortTime' }}
-          </div>
+         
           <div class="message-content">{{ message.content }}</div>
+          <div class="message-time">
+            {{ message.timestamp | date: 'HH:mm':'UTC' }}
+          </div>
         </li>
+        
         <li *ngIf="message.sender === userService.getLoggedInUserId()" class="sender">
-          <div class="message-time" *ngIf="isDateValid(message.timestamp)">
-            {{ message.timestamp | date: 'shortTime' }}
-          </div>
           <div class="message-content">{{ message.content }}</div>
+           <div class="message-time">
+            {{ message.timestamp | date: 'HH:mm' : 'UTC'}}
+          </div>
         </li>
       </ng-container>
+
     </ul>
-
-
     <footer>
       <div>
         <input class="message" [(ngModel)]="message" placeholder="Type your message......." />

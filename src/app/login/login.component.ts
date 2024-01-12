@@ -53,6 +53,8 @@ this.http.post("http://localhost:8080/api/v1/user/login", bodyData)
 this.loggedInUsername = resultData.user.username;
 
 this.userService.setLoggedInUsername(this.loggedInUsername);
+
+
 //store the logged in username in sessionStorage for session persistence
 
 sessionStorage.setItem('LOGGEDUSERNAME',JSON.stringify(this.loggedInUsername));

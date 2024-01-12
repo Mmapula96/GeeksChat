@@ -254,7 +254,7 @@ body {
   /* Styles for screens between 601px and 1024px (e.g., tablets) */
   @media (min-width: 601px) and (max-width: 1024px) {
     body {
-      font-size: 18px;
+      font-size: 1px;
     }
   }
   
@@ -285,47 +285,16 @@ body {
   .send{
 	float:right;
 	border-radius: 10px;
-	background-color: #aef7cc;
+	background-color: #757776;
   }
-  /* .sender {
-	background-color: #aef7cc;
-	margin-top: 10px;
-	border-radius: 10px;
-	border: 1px solid rgb(175, 174, 174);
-	text-align: start;
-	width: min-content;
-	max-width: 100%;
-	width: fit-content;
-	float:right;
-	clear: both;
-  }
-  .message-content {
-	text-align: start;
-	color: #0e0f11;
-	word-wrap: break-word;
-	padding: 10px;
-	border-radius: 5px; 
-	flex-direction: column-reverse;
-  }
-
   
-  .receiver {
-	text-align: left;
-	background-color: #FFFFFF;
-	margin-top: 10px;
-	border-radius: 10px;
-	width: min-content;
-	max-width: 100%;
-	margin: 10px;
-	width: fit-content
-  } */
   
   .message{
 width:800px;
 height:33px;
 box-sizing: border-box;
 resize: none;
-border:1px solid rgb(39, 207, 109);
+border:1px solid rgb(120, 121, 120);
 border-radius: 10px;
 
   }
@@ -343,7 +312,7 @@ border-radius: 10px;
 	  }
 	  
 	  .sender {
-		background-color: #aef7cc;
+		background-color: #8f918f;
 		margin-top: 10px;
 		border-radius: 10px;
 		border: 1px solid rgb(175, 174, 174);
@@ -373,6 +342,7 @@ border-radius: 10px;
 		word-wrap: break-word;
 		padding: 10px;
 		border-radius: 5px;
+	
 	  }
 	  .loggedin-username {
 		font-size: 16px;
@@ -383,3 +353,11 @@ border-radius: 10px;
 		border-radius: 5px; 
 		margin-bottom: 10px; 
 	  }
+
+	  .message-time {
+		font-size: 0.8em;
+		color: #141414; 
+		margin-top: 5px; 
+		float:right;
+	  }
+	  

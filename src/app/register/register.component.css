@@ -17,6 +17,14 @@ position:fixed;
     top: 50%;
     transform: translate(-50%, -50%);
 }
+body {
+    font-size: 16px;
+    background-image: url('/assets/photo.jpg');
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  }
 
 
 .auth-image {
@@ -27,6 +35,7 @@ position:fixed;
 
 h1 {
     text-align: center;
+    font-size:30px;
 }
 
 form {

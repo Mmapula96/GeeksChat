@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,9 +6,8 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
 import { Message, User } from '../usersearchfolder/searchuser';
 import { WebsocketService } from '../websocket.service';
 import { MessageService } from '../message.service';
-import { CurrencyPipe, DatePipe } from '@angular/common';
-import { timestamp } from 'rxjs';
-import { ThisReceiver } from '@angular/compiler';
+import { format } from 'date-fns-tz';
+import * as moment from 'moment';
 
 
 
@@ -34,7 +33,7 @@ export class SearchComponent implements OnInit,OnDestroy {
    User: any;
    user2Id: any;
    conversationId: string='';
-   timestamp: string = '';
+
 loggedInUsername: any;
 
 
@@ -79,21 +78,26 @@ loggedInUsername: any;
   }
 
 
+
+
 onUserSelected(user: User): void {
   this.selectedUser = user;
-  this.convoId = this.messageService.getConversationId(user.userid);
-  
-  this.messageService.getMessages(this.convoId)
+  this.conversationId = this.messageService.getConversationId(user.userid);
+
+  this.messageService.getMessages(this.conversationId)
     .subscribe(messages => {
+      console.log(messages)
       this.messages = messages.map(message => {
         return {
           sender: message.sender,
           content: message.content,
-          timestamp: message.timestamp,
+          timestamp: message.timestamp
+      
         };
       });
     });
 }
+
 
   // Method to open a dialog to display search results
   openDialog(users: any): void {
@@ -117,7 +121,7 @@ onUserSelected(user: User): void {
      this.websocketService.connect(() => {  
       
 });
- this.loggedInUsername = this.userService.getLoggedInUsername()
+   this.loggedInUsername = this.userService.getLoggedInUsername()
  // Add debug logging
  console.log('Debug: username....', this.loggedInUsername);
       
@@ -133,27 +137,19 @@ sendMessage() {
     if (trimmedMessage !== '') {
  
       const conversationId = this.messageService.getConversationId(this.selectedUser.userid);
-
+     
       const newMessage: Message = {
         sender: this.userService.getLoggedInUserId(),
         content: trimmedMessage, 
         conversationId: conversationId,
-        timestamp: new Date(),
-       
+        timestamp: moment('UTC').toDate(),
       };
 
-    
-
       // Add the new message to the UI immediately
-      this.messages.push(newMessage);
-
+     this.messages.push(newMessage);
       // Clear the message input field
       this.message = '';
-
-      
       this.websocketService.sendMessage(`/app/api/messages/${conversationId}` , newMessage);
-    
-      
     } else {
       // Handle the case when the message content is empty
       console.error('Cannot send an empty message.');
@@ -167,20 +163,7 @@ sendMessage() {
   }
 }
 
-isDateValid(date: any): boolean {
-  return date instanceof Date && !isNaN(date.getTime());
-}
 
-getMessages(conversationId: string): void {
-  this.messageService.getMessages(conversationId).subscribe(
-    (messages) => {
-      this.messages = messages;
-    },
-    (error) => {
-      console.error('Error fetching messages:', error);
-    }
-  );
-}
 
 
 }

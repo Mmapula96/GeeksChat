@@ -21,6 +21,7 @@ export interface User{
 export interface Message {
   sender: string;
   content: string;
- conversationId: string;
- timestamp:Date;
+  conversationId: string;
+  timestamp:Date;
+  
 }
