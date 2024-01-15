@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { ChatlistComponent } from './chatlist/chatlist.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -12,6 +13,11 @@ import { ChatlistComponent } from './chatlist/chatlist.component';
 
 
 const routes: Routes = [
+
+  {
+    path:'',
+    component:HomeComponent
+  },
   {path:'login',
 component:LoginComponent},
 

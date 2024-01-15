@@ -14,6 +14,7 @@ import { ChatlistComponent } from './chatlist/chatlist.component';
 import { WebsocketService } from './websocket.service';
 import { MessageService } from './message.service';
 import { SearchComponent } from './search/search.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SearchComponent } from './search/search.component';
     SearchResultsComponent,
     ChatlistComponent,
     SearchComponent,
+    HomeComponent,
   
   
 

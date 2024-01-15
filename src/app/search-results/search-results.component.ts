@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import { User } from '../usersearchfolder/searchuser';
 
@@ -46,7 +45,7 @@ export class SearchResultsComponent implements OnInit{
     // Call the UserService method to add the contact to the chat list
     this.userService.addContactToChatList(loggedInUserId, contactUserId).subscribe(
       // Callback function executed on successful response
-      (response) => {
+      () => {
         console.log('Contact added successfully!');
          // Display an alert indicating successful contact addition
         alert("Contact Added")

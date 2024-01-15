@@ -4,6 +4,7 @@
 body{
 	background-color:#abd9e9;
 	font-family:Arial;
+
 }
 #container{
 	width:100%;
@@ -36,7 +37,7 @@ body{
 aside{
 	width:260px;
 	height:800px;
-	background-color:rgb(148, 144, 148);
+	background-color:rgb(240, 235, 240);
 	display:inline-block;
 	font-size:15px;
 	vertical-align:top;
@@ -209,6 +210,7 @@ main footer a{
 	text-align:center;
 	position: absolute;
 	right:center;
+	
 }
  
   
@@ -229,6 +231,11 @@ main footer a{
 	float:right;
 	border:none;
 	border-radius: 8px;
+	background-image: url('/assets/photo.jpg');
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   }
 
   .bt2{
@@ -236,8 +243,13 @@ main footer a{
 	cursor: pointer;
 	font-size:smaller;
 	border:none;
-	margin-bottom: 5px;
+	/* margin-bottom: 5px; */
 	border-radius: 8px;
+	background-image: url('/assets/photo.jpg');
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   }
 
 body {
@@ -309,6 +321,11 @@ border-radius: 10px;
 	.message-container {
 		display: flex;
 		flex-direction: column;
+		background-image: url('/assets/photo.jpg');
+		background-size: cover;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-attachment: fixed;
 	  }
 	  
 	  .sender {
@@ -318,10 +335,11 @@ border-radius: 10px;
 		border: 1px solid rgb(175, 174, 174);
 		text-align: start;
 		width: min-content;
-		max-width: 100%;
+		max-width: 50%;
 		width: fit-content;
 		margin-bottom: 10px;
-		align-self: flex-end; 
+		align-self: flex-end;
+		margin-right:30px; 
 	  }
 	  
 	  .receiver {
@@ -331,7 +349,7 @@ border-radius: 10px;
 		border: 1px solid rgb(175, 174, 174);
 		text-align: start;
 		width: min-content;
-		max-width: 100%;
+		max-width: 50%;
 		width: fit-content;
 		margin-bottom: 10px;
 	  }
