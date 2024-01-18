@@ -46,7 +46,9 @@ ngOnInit(): void {
   }
 
   // Fetch the chat list for the logged-in user
-  this.getChatList(this.userid);
+  this.getChatList(this.userid)
+
+
 }
 
 // Method to fetch and update the chat list for the logged-in user
@@ -66,6 +68,8 @@ private getChatList(userid: any) {
 
         // Fetch last messages after updating the chat list
         this.getLastMessages();
+        
+      
       } else {
         console.warn('Received empty or invalid chat list for userId:', userid);
       }
@@ -119,9 +123,5 @@ private getChatList(userid: any) {
     });
 }
 
-updateMessages() {
-  // Add the logic to update messages here
-  console.log('Update button clicked');
-}
 }
 

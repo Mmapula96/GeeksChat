@@ -6,7 +6,6 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
 import { Message, User } from '../usersearchfolder/searchuser';
 import { WebsocketService } from '../websocket.service';
 import { MessageService } from '../message.service';
-import { format } from 'date-fns-tz';
 import * as moment from 'moment';
 
 

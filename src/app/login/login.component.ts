@@ -28,7 +28,7 @@ export class LoginComponent{
       "password": this.password
     };
 // Make an HTTP POST request to the login endpoint
-this.http.post("http://localhost:8080/api/v1/user/login", bodyData)
+this.http.post("http://localhost:8081/api/v1/user/login", bodyData)
 .subscribe((resultData: any) => {
   console.log(resultData); //prints the resultData received from the HTTP POST request to the login endpoint
         

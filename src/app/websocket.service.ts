@@ -20,7 +20,7 @@ export class WebsocketService {
 
   connect(callback?: () => void): void {
     if (!this.isConnected) {
-      const socket = new SockJS('http://localhost:8080/websocket-chat');
+      const socket = new SockJS('http://localhost:8081/websocket-chat');
       this.stompClient = Stomp.over(socket);
 
       this.stompClient.connect({}, () => {
@@ -52,6 +52,7 @@ export class WebsocketService {
     // console.log(message.timestamp);
     this.stompClient.send(destination, {}, JSON.stringify(message));
    // this.messageSubject.next(message);
+
   }
 
 //message subscription

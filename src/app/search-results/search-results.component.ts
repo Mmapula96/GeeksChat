@@ -34,8 +34,33 @@ export class SearchResultsComponent implements OnInit{
 
   }
  
+  //  // Method to add a contact to the chat list
+  // addContact(user : User) {
+  //   console.log(this.userService.getLoggedInUserId() + "  " +user.userid)
+  //    // Get the logged-in user ID
+  //   const loggedInUserId = this.userService.getLoggedInUserId(); 
+  // // Get the contact user ID
+  //   const contactUserId = user.userid;  
+
+  //   // Call the UserService method to add the contact to the chat list
+  //   this.userService.addContactToChatList(loggedInUserId, contactUserId).subscribe(
+  //     // Callback function executed on successful response
+  //     () => {
+  //       console.log('Contact added successfully!');
+  //        // Display an alert indicating successful contact addition
+  //       alert("Contact Added")
+  //       this.userService.getChatList;
+      
+  //     },
+  //     (error) => {
+  //       console.error('Error adding contact:', error);
+  //       alert("you can't add yourself as a contact")
+        
+  //     }
+  //   );
+  // } 
    // Method to add a contact to the chat list
-  addContact(user : User) {
+   addContact(user : User) {
     console.log(this.userService.getLoggedInUserId() + "  " +user.userid)
      // Get the logged-in user ID
     const loggedInUserId = this.userService.getLoggedInUserId(); 
@@ -49,14 +74,17 @@ export class SearchResultsComponent implements OnInit{
         console.log('Contact added successfully!');
          // Display an alert indicating successful contact addition
         alert("Contact Added")
+        this.userService.getChatList;
+      
       },
       (error) => {
         console.error('Error adding contact:', error);
         alert("you can't add yourself as a contact")
-        // Handle error, if needed
+        
       }
     );
   } 
+  
   
   }
 

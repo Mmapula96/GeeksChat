@@ -11,7 +11,7 @@ export class MessageService {
  
   
   // private conversations: { [key: string]: BehaviorSubject<Message[]> } = {};
-  private apiUrl = 'http://localhost:8080/api/messages';
+  private apiUrl = 'http://localhost:8081/api/messages';
 
 
 

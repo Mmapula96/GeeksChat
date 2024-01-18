@@ -13,8 +13,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ChatlistComponent } from './chatlist/chatlist.component';
 import { WebsocketService } from './websocket.service';
 import { MessageService } from './message.service';
-import { SearchComponent } from './search/search.component';
 import { HomeComponent } from './home/home.component';
+import { SearchComponent } from './chat/search.component';
 
 
 @NgModule({
@@ -24,10 +24,8 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     SearchResultsComponent,
     ChatlistComponent,
-    SearchComponent,
     HomeComponent,
-  
-  
+    SearchComponent 
 
   ],
   imports: [
